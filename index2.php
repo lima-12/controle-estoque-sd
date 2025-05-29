@@ -51,7 +51,7 @@
                 <div class="divider mb-4"></div>
                 
                 <div class="text-center">
-                    <span class="text-white-50">Não tem uma conta? </span>
+                    <span class="text-white-50">Não tem uma conta?</span>
                     <a href="#" class="link-orange fw-medium">Cadastre-se</a>
                 </div>
             </form>
