@@ -1,5 +1,6 @@
-document.getElementById('togglePassword').addEventListener('click', function() {
-    const passwordInput = document.getElementById('password');
+
+document.querySelector('.password-toggle').addEventListener('click', function() {
+    const passwordInput = this.previousElementSibling;
     const icon = this.querySelector('i');
     
     if (passwordInput.type === 'password') {

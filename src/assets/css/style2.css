@@ -5,59 +5,49 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
-/* logo */
-.login-logo {
-    width: 280px; 
-    height: 280px;
-    max-width: 100%; 
-    object-fit: contain;
-}
-
-@media (max-width: 768px) {
-    .login-logo {
-        width: 240px;
-    }
-}
-
-@media (max-width: 576px) {
-    .login-logo {
-        width: 200px;
-    }
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 0 15px;
 }
 
 .login-card {
-    
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
-/* Ajustes para telas menores */
-@media (max-width: 768px) {
-    .login-card {
-        max-width: 90%;
-        aspect-ratio: unset; /* Remove proporção fixa em mobile */
-        padding: 2rem 1.5rem;
-    }
+.login-logo {
+    width: 300px;
+    height: auto;
+    display: block;
 }
 
-/* Animação de entrada */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px) scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-} */
+.login-title {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    text-align: center;
+}
 
-/* Campos de Input Personalizados */
+.login-subtitle {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
 .input-group-custom {
     position: relative;
-    margin-bottom: 1.5rem;
+    margin-bottom: 15px;
 }
 
 .input-icon-custom {
@@ -65,11 +55,8 @@ body {
     left: 15px;
     top: 50%;
     transform: translateY(-50%);
-    color: rgba(0, 0, 0, 0.6);
+    color: rgba(255, 255, 255, 0.7);
     z-index: 2;
-    pointer-events: none;
-    width: 20px;
-    text-align: center;
 }
 
 .form-control-custom {
@@ -77,12 +64,9 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: white;
     padding-left: 45px !important;
-    height: 50px;
+    height: 45px;
     border-radius: 8px;
     transition: all 0.3s ease;
-    position: relative;
-    z-index: 1;
-    width: 100%;
 }
 
 .form-control-custom:focus {
@@ -96,37 +80,32 @@ body {
     color: rgba(255, 255, 255, 0.6);
 }
 
-.form-control-custom:focus::placeholder {
-    opacity: 0.5;
-}
-
-/* Botão de Mostrar Senha */
 .password-toggle {
     position: absolute;
     right: 15px;
     top: 50%;
     transform: translateY(-50%);
     color: rgba(255, 255, 255, 0.6);
-    z-index: 2;
     background: none;
     border: none;
     padding: 0;
+    cursor: pointer;
 }
 
 .password-toggle:hover {
     color: white;
 }
 
-/* Botão de Entrar */
 .btn-entrar {
     background-color: #f98f19;
     border: none;
-    padding: 12px;
-    font-weight: 600;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    width: 100%;
     color: white;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 8px;
+    width: 100%;
+    margin-top: 15px;
+    transition: all 0.3s ease;
 }
 
 .btn-entrar:hover {
@@ -135,16 +114,18 @@ body {
     box-shadow: 0 4px 12px rgba(249, 143, 25, 0.3);
 }
 
-.btn-entrar:active {
-    transform: translateY(0);
+.login-footer {
+    text-align: center;
+    margin-top: 20px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
 }
 
-/* Link Laranja */
 .link-orange {
     color: #f98f19;
     text-decoration: none;
+    font-weight: 500;
     margin-left: 5px;
-    transition: all 0.3s ease;
 }
 
 .link-orange:hover {
@@ -152,15 +133,12 @@ body {
     text-decoration: underline;
 }
 
-/* Acessibilidade */
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+@media (max-width: 576px) {
+    .login-card {
+        padding: 25px 20px;
+    }
+    
+    .login-logo {
+        width: 120px;
+    }
 }
