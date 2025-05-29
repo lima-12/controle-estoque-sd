@@ -55,7 +55,7 @@
 
                 <!-- Rodapé -->
                 <div class="login-footer">
-                    <span class="texto-abaixo">Já possuí uma conta?</span>
+                    <span class="texto-abaixo">Já possui uma conta?</span>
                     <a href="index2.php" class="link-orange">Entre agora mesmo</a>
                 </div>
             </form>
