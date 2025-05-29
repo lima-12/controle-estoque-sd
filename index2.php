@@ -6,11 +6,11 @@
     <title>Stok - Login</title>
 
     <!-- Links nativos -->
-    <link href="src\assets\css\style2.css" rel="stylesheet">
+    <link rel="stylesheet" href="src\assets\css\style2.css">
     <script src="src\assets\js\script2.js"></script>
 
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
@@ -20,12 +20,17 @@
     <div class="bubble bubble-3"></div>
     
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
+
+        <!-- Quadro Principal de Login -->
         <div class="login-card p-4 p-md-5 w-100" style="max-width: 450px;">
+
+            <!-- Título -->
             <div class="text-center mb-5">
                 <h1 class="text-white mb-3">Bem-vindo de volta</h1>
                 <p class="text-white-50">Entre na sua conta para continuar</p>
             </div>
             
+            <!-- Formulário -->
             <form>
                 <!-- Campo de Email -->
                 <div class="mb-4">
@@ -48,12 +53,15 @@
                     </div>
                 </div>
 
+                <!-- Linha Separadora -->
                 <div class="divider mb-4"></div>
                 
+                <!-- Texto de Link a Tela de Cadastro -->
                 <div class="text-center">
                     <span class="text-white-50">Não tem uma conta?</span>
                     <a href="#" class="link-orange fw-medium">Cadastre-se</a>
                 </div>
+
             </form>
         </div>
     </div>
