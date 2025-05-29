@@ -38,6 +38,14 @@ body {
     text-align: center;
 }
 
+.login-title-cadastro{
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    text-align: center;
+    margin-bottom: 20px
+}
+
 .login-subtitle {
     color: rgb(240, 240, 240);
     font-size: 0.9rem;
