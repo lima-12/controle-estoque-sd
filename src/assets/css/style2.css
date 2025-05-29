@@ -120,7 +120,7 @@ body {
     border-color: #f98f19; /* Laranja */
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(249, 143, 25, 0.3); /* Laranja com transparência */
-    color: blue;
+    color: white;
 }
 
 .texto-abaixo {
