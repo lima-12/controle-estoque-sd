@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(135deg, #1e3a8a, #0d6efd, #f98f19);
+    background: linear-gradient(200deg, #f98f19, #172d68, #172d68);
     min-height: 100vh;
     font-family: 'Segoe UI', Roboto, sans-serif;
     margin: 0;
@@ -39,10 +39,9 @@ body {
 }
 
 .login-subtitle {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgb(240, 240, 240);
     font-size: 0.9rem;
     text-align: center;
-    margin-bottom: 25px;
 }
 
 .input-group-custom {
@@ -71,8 +70,8 @@ body {
 
 .form-control-custom:focus {
     background-color: rgba(255, 255, 255, 0.2);
-    border-color: #f98f19;
-    box-shadow: 0 0 0 0.25rem rgba(249, 143, 25, 0.25);
+    border-color: #f98f19; /* Laranja */
+    box-shadow: 0 0 0 0.25rem rgba(249, 143, 25, 0.25); /* Laranja com transparência */
     color: white;
 }
 
@@ -97,7 +96,7 @@ body {
 }
 
 .btn-entrar {
-    background-color: #f98f19;
+    background-color: #f98f19; /* Laranja */
     border: none;
     color: white;
     font-weight: 600;
@@ -109,9 +108,15 @@ body {
 }
 
 .btn-entrar:hover {
-    background-color: #e08115;
+    background-color: #e08115; /* Laranja mais escuro */
+    border-color: #f98f19; /* Laranja */
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(249, 143, 25, 0.3);
+    box-shadow: 0 4px 12px rgba(249, 143, 25, 0.3); /* Laranja com transparência */
+    color: blue;
+}
+
+.texto-abaixo {
+    color: white;
 }
 
 .login-footer {
@@ -122,14 +127,14 @@ body {
 }
 
 .link-orange {
-    color: #f98f19;
+    color: #f98f19; /* Laranja */
     text-decoration: none;
     font-weight: 500;
     margin-left: 5px;
 }
 
 .link-orange:hover {
-    color: #ffca2c;
+    color: #ffca2c; /* Laranja mais claro/amarelado */
     text-decoration: underline;
 }
 

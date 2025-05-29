@@ -12,7 +12,7 @@
 
     <div class="login-container">
         <div class="login-card ">
-            <div class="d-flex flex-column align-items-center text-center mb-4">
+            <div class="d-flex flex-column align-items-center text-center mb-2">
             <!-- Logo -->
             <img src="src/assets/img/stok azul e laranja.png" alt="Logo Stok" class="login-logo w-50">
             <!-- Títulos -->
@@ -44,7 +44,7 @@
 
                 <!-- Rodapé -->
                 <div class="login-footer">
-                    <span>Não tem uma conta?</span>
+                    <span class="texto-abaixo">Não tem uma conta?</span>
                     <a href="#" class="link-orange">Cadastre-se</a>
                 </div>
             </form>
