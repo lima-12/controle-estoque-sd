@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="src/assets/css/style2.css">
 </head>
 <body>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="src/assets/js/script2.js"></script>
+    
     <div class="login-container">
         <div class="login-card ">
             <div class="d-flex flex-column align-items-center text-center mb-4">
@@ -49,8 +53,5 @@
             </form>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="src\assets\js\script2.js"></script>
 </body>
 </html>
