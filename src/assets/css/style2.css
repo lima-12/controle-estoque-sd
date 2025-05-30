@@ -1,7 +1,7 @@
 body {
     background: linear-gradient(200deg, #f98f19, #172d68, #172d68);
     min-height: 100vh;
-    font-family: 'Segoe UI', Roboto, sans-serif;
+    font-family: 'DM Sans', Arial, sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
@@ -62,7 +62,7 @@ body {
     left: 15px;
     top: 50%;
     transform: translateY(-50%);
-    color: rgba(255, 255, 255, 0.7);
+    color: #ffffffb3;
     z-index: 2;
 }
 

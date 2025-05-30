@@ -1,23 +1,178 @@
 body {
-        background-color: #f8f9fa;
+    background: linear-gradient(135deg, #e1e5ea 0%, #c9d0d8 100%);
+    min-height: 100vh;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-formulario {
+    width: 100%;
+    max-width: 650px;
+    padding: 20px;
+}
+
+.cartao-formulario {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+    width: 100%;
+}
+
+.cabecalho-formulario {
+    background-color: #f98f19;
+    padding: 25px;
+    width: 100%;
+    border-radius: 12px 12px 0 0;
+}
+
+.titulo-com-icone {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.icone-cabecalho {
+    font-size: 2.5rem;
+    color: white;
+    margin-left: 30px;
+}
+
+.titulo-formulario {
+    color: white;
+    font-size: 1.6rem;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.subtitulo-formulario {
+    color: white;
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-bottom: 0;
+}
+
+.corpo-formulario {
+    padding: 30px;
+}
+
+.rotulo-input {
+    color: #555;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.campo-input {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.icone-input {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777;
+    z-index: 2;
+}
+
+.input-produto {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    color: #333;
+    padding-left: 45px !important;
+    height: 45px;
+    border-radius: 8px;
+    width: 100%;
+    transition: border-color 0.3s;
+}
+
+.area-descricao {
+    resize: vertical;
+    padding: 10px 15px 10px 45px !important;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    height: 50px;
+    width: 100%;
+    min-height: 50px;
+    max-height: 200px;
+}
+
+.linha-inputs {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.coluna-input {
+    flex: 1;
+}
+
+.linha-separadora {
+    color: black;
+    margin: 15px 0px 30px 0px;
+}
+
+.botao-cadastrar {
+    background-color: #1e3a8a;
+    border: none;
+    color: white;
+    font-weight: 600;
+    padding: 12px 20px;
+    border-radius: 8px;
+    width: 100%;
+    transition: all 0.3s;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.botao-cadastrar:hover {
+    background-color: #f98f19;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(175, 174, 174, 0.1);
+}
+
+@media (max-width: 576px) {
+    .container-formulario {
+        padding: 15px;
     }
-    .card {
-        max-width: 800px;
-        margin: 0 auto;
-        border: none;
-        border-radius: 10px;
+    
+    .cabecalho-formulario {
+        padding: 20px;
     }
-    .card-header {
-        border-radius: 10px 10px 0 0 !important;
+    
+    .corpo-formulario {
+        padding: 25px 20px;
     }
-    .form-control:focus {
-        border-color: #0d6efd;
-        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    
+    .titulo-formulario {
+        font-size: 1.4rem;
     }
-    hr {
-        opacity: 0.2;
+    
+    .icone-cabecalho {
+        font-size: 2rem;
     }
-    .input-title {
-        margin-bottom: 0.5rem;
-        font-weight: 500;
+    
+    .linha-inputs {
+        flex-direction: column;
+        gap: 0;
     }
+    
+    .coluna-input {
+        width: 100%;
+    }
+    
+    .botao-cadastrar {
+        padding: 12px 15px;
+    }
+}
