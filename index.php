@@ -1,6 +1,8 @@
 <?php
 
     session_start();
+    header('Location: src/views/index.php');
+    exit();
 
 ?>
 

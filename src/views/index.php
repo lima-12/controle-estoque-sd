@@ -6,7 +6,7 @@
     <title>Stok - Login</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="src/assets/css/style2.css">
+    <link rel="stylesheet" href="../assets/css/style2.css">
 </head>
 <body>
 
@@ -14,7 +14,7 @@
         <div class="login-card ">
             <div class="d-flex flex-column align-items-center text-center mb-2">
             <!-- Logo -->
-            <img src="src/assets/img/stok azul e laranja.png" alt="Logo Stok" class="login-logo w-50">
+            <img src="../assets/img/logo-stok-azul-laranja.png" alt="Logo Stok" class="login-logo w-50">
             <!-- Títulos -->
             <h1 class="login-title">Bem-vindo de volta</h1>
             <p class="login-subtitle">Entre na sua conta para continuar</p>

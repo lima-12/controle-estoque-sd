@@ -112,7 +112,7 @@ $aUsuarios = [
 					?>
 						<tr>
 							<td> 
-								<?=$user['nome']?> 
+								<?=$user['nome']?>
 							</td>
 							<td>	
 								<button class='btn btn-sm btn-success' data-id="esconde<?=$user['id']?>" <?=$valida?>>

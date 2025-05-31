@@ -20,11 +20,11 @@ exit();
 // 		$result = $sql->verifica($_POST['email'], $_POST['senha']);
 // 		// echo"<pre>"; print_r($result); exit;
 
-// 		if(empty($result)) {
-// 			header("Location: ../../index.php");
-// 			$_SESSION['message'] = 'email ou senha inválidos!';
-// 			exit();
-// 		}
+        // if(empty($result)) {
+        // 	header("Location: ../../index.php");
+        // 	$_SESSION['message'] = 'email ou senha inválidos!';
+        // 	exit();
+        // }
 
 // 		$_SESSION['email'] = $_POST['email'];
 // 		$_SESSION['nome'] = $result[0]['nome'];
