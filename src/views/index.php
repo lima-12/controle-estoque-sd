@@ -6,7 +6,7 @@
     <title>Stok - Login</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/style2.css">
+    <link rel="stylesheet" href="../assets/css/login.css">
 </head>
 <body>
 
@@ -45,7 +45,7 @@
                 <!-- Rodapé -->
                 <div class="login-footer">
                     <span class="texto-abaixo">Não tem uma conta?</span>
-                    <a href="cadastro.php" class="link-orange">Cadastre-se</a>
+                    <a href="src/views/cadastro.php" class="link-orange">Cadastre-se</a>
                 </div>
             </form>
         </div>
