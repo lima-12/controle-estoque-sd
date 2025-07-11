@@ -45,7 +45,7 @@
                 <!-- Rodapé -->
                 <div class="login-footer">
                     <span class="texto-abaixo">Não tem uma conta?</span>
-                    <a href="src/views/cadastro.php" class="link-orange">Cadastre-se</a>
+                    <a href="cadastro.php" class="link-orange">Cadastre-se</a>
                 </div>
             </form>
         </div>
