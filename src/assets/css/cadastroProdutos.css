@@ -61,6 +61,50 @@ body {
     padding: 30px;
 }
 
+.upload-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #ccc;
+    border-radius: 15px;
+    padding: 30px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    text-align: center;
+    background-color: #fdfdfd;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.upload-area.dragover {
+    border-color: #007bff;
+    background-color: #f0f8ff;
+}
+
+.upload-area input[type="file"] {
+    display: none;
+}
+
+.upload-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icone-upload {
+    font-size: 40px;
+    color: #c9d0d8;
+    margin-bottom: 10px;
+}
+
+.upload-text {
+    font-size: 14px;
+    color: #82868b;
+    margin-bottom: 0px;
+}
+
+
 .rotulo-input {
     color: #555;
     font-size: 0.95rem;
