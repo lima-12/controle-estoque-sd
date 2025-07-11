@@ -1,3 +1,4 @@
+/* ===== Estilo Geral da Página ===== */
 body {
     background: linear-gradient(135deg, #e1e5ea 0%, #c9d0d8 100%);
     min-height: 100vh;
@@ -9,12 +10,14 @@ body {
     align-items: center;
 }
 
+/* ===== Container do Formulário ===== */
 .container-formulario {
     width: 100%;
     max-width: 650px;
     padding: 20px;
 }
 
+/* ===== Cartão Branco do Formulário ===== */
 .cartao-formulario {
     background: white;
     border: 1px solid #e0e0e0;
@@ -24,6 +27,7 @@ body {
     width: 100%;
 }
 
+/* ===== Cabeçalho Laranja com Título ===== */
 .cabecalho-formulario {
     background-color: #f98f19;
     padding: 25px;
@@ -57,11 +61,13 @@ body {
     margin-bottom: 0;
 }
 
+/* ===== Corpo do Formulário ===== */
 .corpo-formulario {
     padding: 30px;
 }
 
-.upload-area {
+/* ===== Área de Upload de Imagem ===== */
+.area-upload {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -77,16 +83,16 @@ body {
     position: relative;
 }
 
-.upload-area.dragover {
+.area-upload.dragover {
     border-color: #007bff;
     background-color: #f0f8ff;
 }
 
-.upload-area input[type="file"] {
+.area-upload input[type="file"] {
     display: none;
 }
 
-.upload-content {
+.conteudo-upload {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -98,14 +104,14 @@ body {
     margin-bottom: 10px;
 }
 
-.upload-text {
+.texto-upload {
     font-size: 14px;
     color: #82868b;
     margin-bottom: 0px;
 }
 
-
-.rotulo-input {
+/* ===== Campos de Texto e Ícones ===== */
+.rotulo-campo {
     color: #555;
     font-size: 0.95rem;
     margin-bottom: 8px;
@@ -126,7 +132,7 @@ body {
     z-index: 2;
 }
 
-.input-produto {
+.entrada-produto {
     background-color: white;
     border: 1px solid #e0e0e0;
     color: #333;
@@ -148,22 +154,25 @@ body {
     max-height: 200px;
 }
 
-.linha-inputs {
+/* ===== Layout dos Campos em Linha ===== */
+.linha-campos {
     display: flex;
     gap: 15px;
     margin-bottom: 15px;
 }
 
-.coluna-input {
+.coluna-campo {
     flex: 1;
 }
 
-.linha-separadora {
+/* ===== Linha Separadora ===== */
+.linha-divisoria {
     color: black;
     margin: 15px 0px 30px 0px;
 }
 
-.botao-cadastrar {
+/* ===== Botão de Enviar ===== */
+.botao-enviar {
     background-color: #1e3a8a;
     border: none;
     color: white;
@@ -179,44 +188,45 @@ body {
     gap: 8px;
 }
 
-.botao-cadastrar:hover {
+.botao-enviar:hover {
     background-color: #f98f19;
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(175, 174, 174, 0.1);
 }
 
+/* ===== Responsividade para Celular ===== */
 @media (max-width: 576px) {
     .container-formulario {
         padding: 15px;
     }
-    
+
     .cabecalho-formulario {
         padding: 20px;
     }
-    
+
     .corpo-formulario {
         padding: 25px 20px;
     }
-    
+
     .titulo-formulario {
         font-size: 1.4rem;
     }
-    
+
     .icone-cabecalho {
         font-size: 2rem;
     }
-    
-    .linha-inputs {
+
+    .linha-campos {
         flex-direction: column;
         gap: 0;
     }
-    
-    .coluna-input {
+
+    .coluna-campo {
         width: 100%;
     }
-    
-    .botao-cadastrar {
+
+    .botao-enviar {
         padding: 12px 15px;
     }
 }

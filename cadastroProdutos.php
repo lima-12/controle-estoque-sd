@@ -4,14 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stok - Cadastro de Produtos</title>
+    <!-- Importando Bootstrap e Font Awesome -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- CSS -->
     <link rel="stylesheet" href="src/assets/css/cadastroProdutos.css">
 </head>
 <body>
+    <!-- Container principal do formulário -->
     <div class="container-formulario">
+        <!-- Cartão com o conteúdo do formulário -->
         <div class="cartao-formulario">
+            <!-- Cabeçalho com título e ícone -->
             <div class="cabecalho-formulario">
                 <div class="titulo-com-icone">
                     <i class="fas fa-cube icone-cabecalho"></i>
@@ -22,54 +27,58 @@
                 </div>
             </div>
 
+            <!-- Corpo com os campos do formulário -->
             <div class="corpo-formulario">
                 <form>
+                    <!-- Upload de imagem do produto (opcional) -->
+                    <div class="rotulo-campo">Imagem do Produto (opcional)</div>
+                    <label class="area-upload" id="area-upload">
+                        <input type="file" id="inputArquivo" name="imagemProduto" accept="image/*">
+                        <div class="conteudo-upload">
+                            <i class="fas fa-image icone-upload"></i>
+                            <p class="texto-upload">Selecione uma imagem</p>
+                        </div>
+                    </label>
 
-                    <div class="rotulo-input">Imagem do Produto (opcional)</div>
-                        <label class="upload-area" id="upload-area">
-                            <input type="file" id="fileInput" name="imagemProduto" accept="image/*">
-                            <div class="upload-content">
-                                <i class="fas fa-image icone-upload"></i>
-                                <p class="upload-text">Selecione uma imagem</p>
-                            </div>
-                        </label>
-                    
-                    <!-- Campo de Nome -->
-                    <div class="rotulo-input">Nome do Produto</div>
+                    <!-- Campo de nome do produto -->
+                    <div class="rotulo-campo">Nome do Produto</div>
                     <div class="campo-input">
                         <i class="fa-solid fa-box icone-input"></i>
-                        <input class="form-control input-produto" placeholder="Ex: Sabão" required>
+                        <input class="form-control entrada-produto" placeholder="Ex: Sabão" required>
                     </div>
 
-                    <!-- Campo de Descrição -->
-                    <div class="rotulo-input">Descrição do Produto (opcional)</div>
+                    <!-- Campo de descrição do produto (opcional) -->
+                    <div class="rotulo-campo">Descrição do Produto (opcional)</div>
                     <div class="campo-input">
                         <i class="fas fa-align-left icone-input"></i>
                         <textarea class="form-control area-descricao" placeholder="Detalhes do produto..."></textarea>
                     </div>
-                    
-                    <!-- Campos Quantidade e Preço -->
-                    <div class="linha-inputs">
-                        <div class="coluna-input">
-                            <div class="rotulo-input">Quantidade</div>
+
+                    <!-- Linha com os campos de quantidade e preço -->
+                    <div class="linha-campos">
+                        <!-- Campo quantidade -->
+                        <div class="coluna-campo">
+                            <div class="rotulo-campo">Quantidade</div>
                             <div class="campo-input">
                                 <i class="fas fa-hashtag icone-input"></i>
-                                <input type="number" class="form-control input-produto" placeholder="0" min="0" required>
+                                <input type="number" class="form-control entrada-produto" placeholder="0" min="0" required>
                             </div>
                         </div>
-                        <div class="coluna-input">
-                            <div class="rotulo-input">Preço (R$)</div>
+                        <!-- Campo preço -->
+                        <div class="coluna-campo">
+                            <div class="rotulo-campo">Preço (R$)</div>
                             <div class="campo-input">
                                 <i class="fas fa-dollar-sign icone-input"></i>
-                                <input type="number" step="0.01" class="form-control input-produto" placeholder="0.00" min="0" required>
+                                <input type="number" step="0.01" class="form-control entrada-produto" placeholder="0.00" min="0" required>
                             </div>
                         </div>
                     </div>
 
-                    <hr class="linha-separadora">
+                    <!-- Linha divisória -->
+                    <hr class="linha-divisoria">
 
-                    <!-- Botão de Cadastrar -->
-                    <button type="submit" class="btn botao-cadastrar">
+                    <!-- Botão de envio do formulário -->
+                    <button type="submit" class="btn botao-enviar">
                         <i class="fas fa-plus icone-botao"></i>
                         Cadastrar
                     </button>
@@ -78,6 +87,7 @@
         </div>
     </div>
 
+    <!-- Scripts Bootstrap e JS personalizado -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="src/assets/js/cadastroProdutos.js"></script>
 </body>
