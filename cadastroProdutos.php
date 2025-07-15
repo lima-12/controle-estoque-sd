@@ -1,3 +1,11 @@
+<?php
+
+require_once 'produtosTeste.php';
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -31,14 +39,14 @@
             <div class="corpo-formulario">
                 <form>
                     <!-- Upload de imagem do produto (opcional) -->
-                    <div class="rotulo-campo">Imagem do Produto (opcional)</div>
+                    <!-- <div class="rotulo-campo">Imagem do Produto (opcional)</div>
                     <label class="area-upload" id="area-upload">
                         <input type="file" id="inputArquivo" name="imagemProduto" accept="image/*">
                         <div class="conteudo-upload">
                             <i class="fas fa-image icone-upload"></i>
                             <p class="texto-upload">Selecione uma imagem</p>
                         </div>
-                    </label>
+                    </label> -->
 
                     <!-- Campo de nome do produto -->
                     <div class="rotulo-campo">Nome do Produto</div>
@@ -52,6 +60,20 @@
                     <div class="campo-input">
                         <i class="fas fa-align-left icone-input"></i>
                         <textarea class="form-control area-descricao" placeholder="Detalhes do produto..."></textarea>
+                    </div>
+
+                    <!-- Dropdown de categoria -->
+                    <!-- Dropdown de categoria com ícone e opção neutra -->
+                    <div class="rotulo-campo">Categoria</div>
+                    <div class="campo-input" style="position: relative;">
+                        <i class="fas fa-tags icone-input"></i>
+                        <select class="form-control entrada-produto" name="categoria" required style="padding-right: 2.5rem;">
+                            <option value="">Selecione uma categoria</option> <!-- Opção neutra -->
+                            <?php foreach ($categorias as $categoria): ?>
+                                <option value="<?= htmlspecialchars($categoria['nome']) ?>"><?= htmlspecialchars($categoria['nome']) ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <i class="fas fa-chevron-down" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); pointer-events: none; color: #666;"></i>
                     </div>
 
                     <!-- Linha com os campos de quantidade e preço -->

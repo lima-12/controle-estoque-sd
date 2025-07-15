@@ -1,36 +1,23 @@
 <?php
 // Simulando dados de produtos recentes
-$produtosRecentes = [
-  ["nome" => "Smartphone Galaxy S24", "categoria" => "Eletrônicos", "quantidade" => 45, "data" => "2024-01-14"],
-  ["nome" => "Notebook Dell Inspiron", "categoria" => "Eletrônicos", "quantidade" => 12, "data" => "2024-01-13"],
-  ["nome" => "Camiseta Nike", "categoria" => "Roupas", "quantidade" => 0, "data" => "2024-01-12"],
-  ["nome" => "Café Premium", "categoria" => "Alimentação", "quantidade" => 156, "data" => "2024-01-11"],
-  ["nome" => "Livro React Avançado", "categoria" => "Livros", "quantidade" => 28, "data" => "2024-01-10"],
-  ["nome" => "Sabonete", "categoria" => "Higiene", "quantidade" => 5, "data" => "2025-07-14"]
-];
+require_once 'produtosTeste.php';
 
-// Filtros recebidos via GET
 $busca = $_GET['busca'] ?? '';
 $categoria = $_GET['categoria'] ?? '';
 $status = $_GET['status'] ?? '';
 $periodo = $_GET['periodo'] ?? '';
-
-// Data atual
 $hoje = new DateTime();
 
-// Aplica filtro
 $produtosRecentes = array_filter($produtosRecentes, function ($produto) use ($busca, $categoria, $status, $periodo, $hoje) {
   $nomeMatch = empty($busca) || stripos($produto['nome'], $busca) !== false;
   $categoriaMatch = empty($categoria) || $produto['categoria'] == $categoria;
 
-  // Define status atual do produto
   if ($produto['quantidade'] == 0) $statusProduto = 'Esgotado';
   elseif ($produto['quantidade'] <= 20) $statusProduto = 'Estoque Baixo';
   else $statusProduto = 'Disponível';
 
   $statusMatch = empty($status) || $statusProduto == $status;
 
-  // Verifica o filtro por período
   $dataProduto = new DateTime($produto['data']);
   if ($periodo === '7') {
     $limite = (clone $hoje)->modify('-7 days');
@@ -50,21 +37,84 @@ $produtosRecentes = array_filter($produtosRecentes, function ($produto) use ($bu
 
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Stok - Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="src/assets/css/telaPrincipal.css" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8f9fa;
+    }
+    .header {
+      background: linear-gradient(to right, #f59e0b, #f97316);
+      padding: 20px 30px;
+      color: white;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+    }
+    .btn-flutuante {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #2563eb;
+      color: white;
+      padding: 16px;
+      border-radius: 50%;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      font-size: 24px;
+      transition: 0.3s;
+      z-index: 10;
+    }
+    .btn-flutuante:hover {
+      transform: scale(1.1);
+      background-color: #1d4ed8;
+    }
+    .status-disponivel {
+      background-color: #dcfce7;
+      color: #16a34a;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+    .status-baixo {
+      background-color: #fef9c3;
+      color: #ca8a04;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+    .status-esgotado {
+      background-color: #fee2e2;
+      color: #dc2626;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+    .card {
+      border-radius: 16px;
+      border: none;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+    table thead {
+      background-color: #f1f5f9;
+    }
+    table {
+      border-radius: 12px;
+      overflow: hidden;
+    }
+  </style>
 </head>
-
 <body>
-  <!-- Header -->
   <div class="header d-flex justify-content-between align-items-center">
     <div>
-      <h4>Dashboard</h4>
+      <h4 class="fw-bold">Dashboard</h4>
       <p class="mb-0">Bem-vindo ao sistema de controle de estoque</p>
     </div>
     <div class="d-flex align-items-center">
@@ -76,9 +126,8 @@ $produtosRecentes = array_filter($produtosRecentes, function ($produto) use ($bu
   </div>
 
   <div class="container my-4">
-    <!-- Filtro e busca -->
-    <form method="GET" class="card p-3 mb-4">
-      <div class="row g-2 align-items-center mb-2">
+    <form method="GET" class="card p-4 mb-4">
+      <div class="row g-2 align-items-center mb-3">
         <div class="col-auto">
           <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#filtroAvancado">
             <i class="fas fa-filter"></i>
@@ -94,9 +143,8 @@ $produtosRecentes = array_filter($produtosRecentes, function ($produto) use ($bu
         </div>
       </div>
 
-      <div class="collapse show" id="filtroAvancado">
+      <div class="collapse" id="filtroAvancado">
         <div class="row g-2">
-          <!-- Categoria -->
           <div class="col-md-4">
             <select name="categoria" class="form-select">
               <option value="">Categoria</option>
@@ -110,7 +158,6 @@ $produtosRecentes = array_filter($produtosRecentes, function ($produto) use ($bu
             </select>
           </div>
 
-          <!-- Período -->
           <div class="col-md-4">
             <select name="periodo" class="form-select">
               <option value="">Período</option>
@@ -120,7 +167,6 @@ $produtosRecentes = array_filter($produtosRecentes, function ($produto) use ($bu
             </select>
           </div>
 
-          <!-- Status -->
           <div class="col-md-4">
             <select name="status" class="form-select">
               <option value="">Status</option>
@@ -130,17 +176,15 @@ $produtosRecentes = array_filter($produtosRecentes, function ($produto) use ($bu
             </select>
           </div>
         </div>
-
         <div class="mt-3 text-end">
           <button class="btn btn-sm btn-primary" type="submit">Aplicar Filtros</button>
         </div>
       </div>
     </form>
 
-    <!-- Tabela de Produtos -->
-    <h5>Produtos Recentes</h5>
+    <h5 class="fw-semibold">Produtos Recentes</h5>
     <div class="table-responsive mb-4">
-      <table class="table">
+      <table class="table align-middle">
         <thead>
           <tr>
             <th>Nome</th>
@@ -177,13 +221,10 @@ $produtosRecentes = array_filter($produtosRecentes, function ($produto) use ($bu
         </tbody>
       </table>
     </div>
-
-    <!-- Botão de adicionar -->
     <a href="cadastroProdutos.php" class="btn-flutuante" title="Cadastrar Produto">
       <i class="fas fa-circle-plus"></i>
     </a>
   </div>
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
