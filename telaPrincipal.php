@@ -1,13 +1,31 @@
 <?php
-// Simulando dados de produtos recentes
-require_once 'produtosTeste.php';
+// Caminhos dos arquivos
+$produtosPath = 'produtos.json';
+$categoriasPath = 'categorias.json';
 
+// Lê os produtos
+$produtosRecentes = [];
+if (file_exists($produtosPath)) {
+  $jsonProdutos = file_get_contents($produtosPath);
+  $produtosRecentes = json_decode($jsonProdutos, true) ?? [];
+}
+
+// Lê as categorias
+$categorias = [];
+if (file_exists($categoriasPath)) {
+  $jsonCategorias = file_get_contents($categoriasPath);
+  $categoriasData = json_decode($jsonCategorias, true) ?? [];
+  $categorias = array_column($categoriasData, 'nome'); // transforma em array simples
+}
+
+// Filtros da URL
 $busca = $_GET['busca'] ?? '';
 $categoria = $_GET['categoria'] ?? '';
 $status = $_GET['status'] ?? '';
 $periodo = $_GET['periodo'] ?? '';
 $hoje = new DateTime();
 
+// Filtra os produtos
 $produtosRecentes = array_filter($produtosRecentes, function ($produto) use ($busca, $categoria, $status, $periodo, $hoje) {
   $nomeMatch = empty($busca) || stripos($produto['nome'], $busca) !== false;
   $categoriaMatch = empty($categoria) || $produto['categoria'] == $categoria;
@@ -34,6 +52,7 @@ $produtosRecentes = array_filter($produtosRecentes, function ($produto) use ($bu
   return $nomeMatch && $categoriaMatch && $statusMatch && $periodoMatch;
 });
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -148,13 +167,11 @@ $produtosRecentes = array_filter($produtosRecentes, function ($produto) use ($bu
           <div class="col-md-4">
             <select name="categoria" class="form-select">
               <option value="">Categoria</option>
-              <?php
-              $categorias = ['Eletrônicos', 'Alimentação', 'Roupas', 'Livros', 'Higiene'];
-              foreach ($categorias as $cat) {
-                $selected = ($categoria === $cat) ? 'selected' : '';
-                echo "<option value=\"$cat\" $selected>$cat</option>";
-              }
-              ?>
+              <?php foreach ($categorias as $cat): ?>
+                <option value="<?= htmlspecialchars($cat) ?>" <?= $categoria === $cat ? 'selected' : '' ?>>
+                  <?= htmlspecialchars($cat) ?>
+                </option>
+              <?php endforeach; ?>
             </select>
           </div>
 

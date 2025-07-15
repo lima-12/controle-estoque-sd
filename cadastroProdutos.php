@@ -1,10 +1,39 @@
 <?php
+// Caminhos dos arquivos
+$jsonPathProdutos = 'produtos.json';
+$jsonPathCategorias = 'categorias.json';
 
-require_once 'produtosTeste.php';
+// Carrega os produtos
+$produtosRecentes = [];
+if (file_exists($jsonPathProdutos)) {
+    $jsonData = file_get_contents($jsonPathProdutos);
+    $produtosRecentes = json_decode($jsonData, true) ?? [];
+}
 
+// Carrega as categorias do JSON
+$categorias = [];
+if (file_exists($jsonPathCategorias)) {
+    $jsonCategorias = file_get_contents($jsonPathCategorias);
+    $categorias = json_decode($jsonCategorias, true) ?? [];
+}
 
+// Processa o envio do formulário
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $novoProduto = [
+        "nome" => $_POST["nome"] ?? "",
+        "descricao" => $_POST["descricao"] ?? "",
+        "categoria" => $_POST["categoria"] ?? "",
+        "quantidade" => (int) ($_POST["quantidade"] ?? 0),
+        "data" => date("Y-m-d")
+    ];
 
+    $produtosRecentes[] = $novoProduto;
+
+    // Salva no JSON
+    file_put_contents($jsonPathProdutos, json_encode($produtosRecentes, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -37,7 +66,7 @@ require_once 'produtosTeste.php';
 
             <!-- Corpo com os campos do formulário -->
             <div class="corpo-formulario">
-                <form>
+                <form method="post">
                     <!-- Upload de imagem do produto (opcional) -->
                     <!-- <div class="rotulo-campo">Imagem do Produto (opcional)</div>
                     <label class="area-upload" id="area-upload">
@@ -52,23 +81,22 @@ require_once 'produtosTeste.php';
                     <div class="rotulo-campo">Nome do Produto</div>
                     <div class="campo-input">
                         <i class="fa-solid fa-box icone-input"></i>
-                        <input class="form-control entrada-produto" placeholder="Ex: Sabão" required>
+                        <input class="form-control entrada-produto" name="nome" placeholder="Ex: Sabão" required>
                     </div>
 
                     <!-- Campo de descrição do produto (opcional) -->
                     <div class="rotulo-campo">Descrição do Produto (opcional)</div>
                     <div class="campo-input">
                         <i class="fas fa-align-left icone-input"></i>
-                        <textarea class="form-control area-descricao" placeholder="Detalhes do produto..."></textarea>
+                        <textarea class="form-control area-descricao" name="descricao" placeholder="Detalhes do produto..."></textarea>
                     </div>
 
-                    <!-- Dropdown de categoria -->
                     <!-- Dropdown de categoria com ícone e opção neutra -->
                     <div class="rotulo-campo">Categoria</div>
                     <div class="campo-input" style="position: relative;">
                         <i class="fas fa-tags icone-input"></i>
                         <select class="form-control entrada-produto" name="categoria" required style="padding-right: 2.5rem;">
-                            <option value="">Selecione uma categoria</option> <!-- Opção neutra -->
+                            <option value="">Selecione uma categoria</option>
                             <?php foreach ($categorias as $categoria): ?>
                                 <option value="<?= htmlspecialchars($categoria['nome']) ?>"><?= htmlspecialchars($categoria['nome']) ?></option>
                             <?php endforeach; ?>
@@ -83,7 +111,7 @@ require_once 'produtosTeste.php';
                             <div class="rotulo-campo">Quantidade</div>
                             <div class="campo-input">
                                 <i class="fas fa-hashtag icone-input"></i>
-                                <input type="number" class="form-control entrada-produto" placeholder="0" min="0" required>
+                                <input type="number" name="quantidade" class="form-control entrada-produto" placeholder="0" min="0" required>
                             </div>
                         </div>
                         <!-- Campo preço -->
@@ -91,7 +119,7 @@ require_once 'produtosTeste.php';
                             <div class="rotulo-campo">Preço (R$)</div>
                             <div class="campo-input">
                                 <i class="fas fa-dollar-sign icone-input"></i>
-                                <input type="number" step="0.01" class="form-control entrada-produto" placeholder="0.00" min="0" required>
+                                <input type="number" name="preco" step="0.01" class="form-control entrada-produto" placeholder="0.00" min="0" required>
                             </div>
                         </div>
                     </div>
@@ -106,6 +134,7 @@ require_once 'produtosTeste.php';
                     </button>
                 </form>
             </div>
+
         </div>
     </div>
 
