@@ -145,10 +145,11 @@ $produtosRecentes = array_filter($produtosRecentes, function ($produto) use ($bu
   </div>
 
   <div class="container my-4">
-    <form method="GET" class="card p-4 mb-4">
+    <!-- Formulário envia para a mesma página com método GET -->
+    <form method="GET" action="" class="card p-4 mb-4">
       <div class="row g-2 align-items-center mb-3">
         <div class="col-auto">
-          <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#filtroAvancado">
+          <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#filtroAvancado" aria-expanded="false" aria-controls="filtroAvancado">
             <i class="fas fa-filter"></i>
           </button>
         </div>
@@ -156,7 +157,7 @@ $produtosRecentes = array_filter($produtosRecentes, function ($produto) use ($bu
           <input type="text" name="busca" class="form-control" placeholder="Buscar produtos..." value="<?= htmlspecialchars($busca) ?>">
         </div>
         <div class="col-auto">
-          <button class="btn btn-primary" type="submit">
+          <button class="btn btn-primary" type="submit" title="Buscar">
             <i class="fas fa-search"></i>
           </button>
         </div>
@@ -212,29 +213,35 @@ $produtosRecentes = array_filter($produtosRecentes, function ($produto) use ($bu
           </tr>
         </thead>
         <tbody>
-          <?php foreach ($produtosRecentes as $produto): ?>
+          <?php if (empty($produtosRecentes)): ?>
             <tr>
-              <td><?= htmlspecialchars($produto['nome']) ?></td>
-              <td><?= htmlspecialchars($produto['categoria']) ?></td>
-              <td><?= $produto['quantidade'] ?></td>
-              <td>
-                <?php
-                if ($produto['quantidade'] == 0) {
-                  $classeStatus = 'status-esgotado';
-                  $textoStatus = 'Esgotado';
-                } elseif ($produto['quantidade'] <= 20) {
-                  $classeStatus = 'status-baixo';
-                  $textoStatus = 'Estoque Baixo';
-                } else {
-                  $classeStatus = 'status-disponivel';
-                  $textoStatus = 'Disponível';
-                }
-                ?>
-                <span class="<?= $classeStatus ?>"><?= $textoStatus ?></span>
-              </td>
-              <td><?= date("d/m/Y", strtotime($produto['data'])) ?></td>
+              <td colspan="5" class="text-center text-muted">Nenhum produto encontrado.</td>
             </tr>
-          <?php endforeach; ?>
+          <?php else: ?>
+            <?php foreach ($produtosRecentes as $produto): ?>
+              <tr>
+                <td><?= htmlspecialchars($produto['nome']) ?></td>
+                <td><?= htmlspecialchars($produto['categoria']) ?></td>
+                <td><?= $produto['quantidade'] ?></td>
+                <td>
+                  <?php
+                  if ($produto['quantidade'] == 0) {
+                    $classeStatus = 'status-esgotado';
+                    $textoStatus = 'Esgotado';
+                  } elseif ($produto['quantidade'] <= 20) {
+                    $classeStatus = 'status-baixo';
+                    $textoStatus = 'Estoque Baixo';
+                  } else {
+                    $classeStatus = 'status-disponivel';
+                    $textoStatus = 'Disponível';
+                  }
+                  ?>
+                  <span class="<?= $classeStatus ?>"><?= $textoStatus ?></span>
+                </td>
+                <td><?= date("d/m/Y", strtotime($produto['data'])) ?></td>
+              </tr>
+            <?php endforeach; ?>
+          <?php endif; ?>
         </tbody>
       </table>
     </div>
@@ -242,6 +249,7 @@ $produtosRecentes = array_filter($produtosRecentes, function ($produto) use ($bu
       <i class="fas fa-circle-plus"></i>
     </a>
   </div>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
