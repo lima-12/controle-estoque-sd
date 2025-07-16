@@ -25,6 +25,9 @@ $status = $_GET['status'] ?? '';
 $periodo = $_GET['periodo'] ?? '';
 $hoje = new DateTime();
 
+// Verifica se algum filtro avançado está ativo (categoria, status ou período)
+$filtrosAtivos = ($categoria !== '' || $status !== '' || $periodo !== '');
+
 // Filtra os produtos
 $produtosRecentes = array_filter($produtosRecentes, function ($produto) use ($busca, $categoria, $status, $periodo, $hoje) {
   $nomeMatch = empty($busca) || stripos($produto['nome'], $busca) !== false;
@@ -53,16 +56,15 @@ $produtosRecentes = array_filter($produtosRecentes, function ($produto) use ($bu
 });
 ?>
 
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Stok - Dashboard</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="src/assets/css/telaPrincipal.css" />
@@ -145,16 +147,28 @@ $produtosRecentes = array_filter($produtosRecentes, function ($produto) use ($bu
   </div>
 
   <div class="container my-4">
-    <!-- Formulário envia para a mesma página com método GET -->
     <form method="GET" action="" class="card p-4 mb-4">
       <div class="row g-2 align-items-center mb-3">
         <div class="col-auto">
-          <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#filtroAvancado" aria-expanded="false" aria-controls="filtroAvancado">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#filtroAvancado"
+            aria-expanded="<?= $filtrosAtivos ? 'true' : 'false' ?>"
+            aria-controls="filtroAvancado"
+          >
             <i class="fas fa-filter"></i>
           </button>
         </div>
         <div class="col">
-          <input type="text" name="busca" class="form-control" placeholder="Buscar produtos..." value="<?= htmlspecialchars($busca) ?>">
+          <input
+            type="text"
+            name="busca"
+            class="form-control"
+            placeholder="Buscar produtos..."
+            value="<?= htmlspecialchars($busca) ?>"
+          />
         </div>
         <div class="col-auto">
           <button class="btn btn-primary" type="submit" title="Buscar">
@@ -163,13 +177,16 @@ $produtosRecentes = array_filter($produtosRecentes, function ($produto) use ($bu
         </div>
       </div>
 
-      <div class="collapse" id="filtroAvancado">
+      <div class="collapse <?= $filtrosAtivos ? 'show' : '' ?>" id="filtroAvancado">
         <div class="row g-2">
           <div class="col-md-4">
             <select name="categoria" class="form-select">
               <option value="">Categoria</option>
               <?php foreach ($categorias as $cat): ?>
-                <option value="<?= htmlspecialchars($cat) ?>" <?= $categoria === $cat ? 'selected' : '' ?>>
+                <option
+                  value="<?= htmlspecialchars($cat) ?>"
+                  <?= $categoria === $cat ? 'selected' : '' ?>
+                >
                   <?= htmlspecialchars($cat) ?>
                 </option>
               <?php endforeach; ?>
