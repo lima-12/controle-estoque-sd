@@ -1,7 +1,10 @@
 <?php
+session_start();
+
 // Caminhos dos arquivos
 $produtosPath = 'produtos.json';
 $categoriasPath = 'categorias.json';
+$usuariosPath = 'src\views\usuarios.json';
 
 // Lê os produtos
 $produtosRecentes = [];
@@ -15,7 +18,26 @@ $categorias = [];
 if (file_exists($categoriasPath)) {
   $jsonCategorias = file_get_contents($categoriasPath);
   $categoriasData = json_decode($jsonCategorias, true) ?? [];
-  $categorias = array_column($categoriasData, 'nome'); // transforma em array simples
+  $categorias = array_column($categoriasData, 'nome');
+}
+
+// Lê os usuários
+$nomeUsuario = 'Usuário';
+$fotoUsuario = 'https://cdn-icons-png.flaticon.com/512/149/149071.png'; // ícone padrão
+
+if (isset($_SESSION['usuario_email']) && file_exists($usuariosPath)) {
+  $jsonUsuarios = file_get_contents($usuariosPath);
+  $usuarios = json_decode($jsonUsuarios, true) ?? [];
+
+  foreach ($usuarios as $usuario) {
+    if ($usuario['email'] === $_SESSION['usuario_email']) {
+      $nomeUsuario = $usuario['nome'];
+      if (!empty($usuario['foto'])) {
+        $fotoUsuario = $usuario['foto'];
+      }
+      break;
+    }
+  }
 }
 
 // Filtros da URL
@@ -25,7 +47,7 @@ $status = $_GET['status'] ?? '';
 $periodo = $_GET['periodo'] ?? '';
 $hoje = new DateTime();
 
-// Verifica se algum filtro avançado está ativo (categoria, status ou período)
+// Verifica se algum filtro avançado está ativo
 $filtrosAtivos = ($categoria !== '' || $status !== '' || $periodo !== '');
 
 // Filtra os produtos
@@ -71,7 +93,7 @@ $produtosRecentes = array_filter($produtosRecentes, function ($produto) use ($bu
   <style>
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #f8f9fa;
+      background: linear-gradient(135deg, #e1e5ea 0%, #d6dee7ff 100%);
     }
     .header {
       background: linear-gradient(to right, #f59e0b, #f97316);
@@ -79,6 +101,10 @@ $produtosRecentes = array_filter($produtosRecentes, function ($produto) use ($bu
       color: white;
       border-bottom-left-radius: 12px;
       border-bottom-right-radius: 12px;
+    }
+    .barra-pesquisa {
+      margin-top: 50px !important;
+      margin-bottom: 50px !important;
     }
     .btn-flutuante {
       position: fixed;
@@ -123,6 +149,19 @@ $produtosRecentes = array_filter($produtosRecentes, function ($produto) use ($bu
       border: none;
       box-shadow: 0 4px 20px rgba(0,0,0,0.05);
     }
+    .logo-header {
+      height: 60px;
+      width: auto;
+      overflow: hidden;
+      margin-left: 80px;
+      display: flex;
+      align-items: center;
+    }
+    .logo-header img {
+      height: 100px;
+      object-fit: cover;
+      display: block;
+    }
     table thead {
       background-color: #f1f5f9;
     }
@@ -134,21 +173,42 @@ $produtosRecentes = array_filter($produtosRecentes, function ($produto) use ($bu
 </head>
 <body>
   <div class="header d-flex justify-content-between align-items-center">
-    <div>
-      <h4 class="fw-bold">Dashboard</h4>
-      <p class="mb-0">Bem-vindo ao sistema de controle de estoque</p>
+    <div class="logo-header">
+      <img src="src/assets/img/logo-stok-azul-laranja.png" alt="Logo Stok" />
     </div>
-    <div class="d-flex align-items-center">
-      <div class="me-2 text-end">
-        <strong>João Silva</strong><br />
-        <small>Administrador</small>
-      </div>
+
+    <div class="dropdown">
+      <button
+        class="btn btn-white d-flex align-items-center gap-2"
+        type="button"
+        id="userMenuButton"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+        style="border-radius: 8px; padding: 6px 12px; border: none; box-shadow: 0 0 8px rgba(0,0,0,0.1); color: #000"
+      >
+        <img src="<?= $fotoUsuario ?>" alt="Foto do usuário" width="32" height="32" class="rounded" />
+        <span class="text-dark fw-semibold"><?= htmlspecialchars($nomeUsuario) ?></span>
+        <i class="fas fa-chevron-down text-dark"></i>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenuButton" style="min-width: 180px;">
+        <li>
+          <a class="dropdown-item d-flex align-items-center gap-2" href="editarPerfil.php">
+            <i class="fas fa-user-pen"></i> Editar Perfil
+          </a>
+        </li>
+        <li><hr class="dropdown-divider" /></li>
+        <li>
+          <a class="dropdown-item d-flex align-items-center gap-2" href="sair.php">
+            <i class="fas fa-sign-out-alt"></i> Sair
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
 
-  <div class="container my-4">
+  <div class="barra-pesquisa container">
     <form method="GET" action="" class="card p-4 mb-4">
-      <div class="row g-2 align-items-center mb-3">
+      <div class="row g-2 align-items-center mb">
         <div class="col-auto">
           <button
             class="btn btn-outline-secondary"
@@ -183,10 +243,7 @@ $produtosRecentes = array_filter($produtosRecentes, function ($produto) use ($bu
             <select name="categoria" class="form-select">
               <option value="">Categoria</option>
               <?php foreach ($categorias as $cat): ?>
-                <option
-                  value="<?= htmlspecialchars($cat) ?>"
-                  <?= $categoria === $cat ? 'selected' : '' ?>
-                >
+                <option value="<?= htmlspecialchars($cat) ?>" <?= $categoria === $cat ? 'selected' : '' ?>>
                   <?= htmlspecialchars($cat) ?>
                 </option>
               <?php endforeach; ?>
@@ -216,56 +273,57 @@ $produtosRecentes = array_filter($produtosRecentes, function ($produto) use ($bu
         </div>
       </div>
     </form>
-
-    <h5 class="fw-semibold">Produtos Recentes</h5>
-    <div class="table-responsive mb-4">
-      <table class="table align-middle">
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Categoria</th>
-            <th>Quantidade</th>
-            <th>Status</th>
-            <th>Data</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php if (empty($produtosRecentes)): ?>
-            <tr>
-              <td colspan="5" class="text-center text-muted">Nenhum produto encontrado.</td>
-            </tr>
-          <?php else: ?>
-            <?php foreach ($produtosRecentes as $produto): ?>
-              <tr>
-                <td><?= htmlspecialchars($produto['nome']) ?></td>
-                <td><?= htmlspecialchars($produto['categoria']) ?></td>
-                <td><?= $produto['quantidade'] ?></td>
-                <td>
-                  <?php
-                  if ($produto['quantidade'] == 0) {
-                    $classeStatus = 'status-esgotado';
-                    $textoStatus = 'Esgotado';
-                  } elseif ($produto['quantidade'] <= 20) {
-                    $classeStatus = 'status-baixo';
-                    $textoStatus = 'Estoque Baixo';
-                  } else {
-                    $classeStatus = 'status-disponivel';
-                    $textoStatus = 'Disponível';
-                  }
-                  ?>
-                  <span class="<?= $classeStatus ?>"><?= $textoStatus ?></span>
-                </td>
-                <td><?= date("d/m/Y", strtotime($produto['data'])) ?></td>
-              </tr>
-            <?php endforeach; ?>
-          <?php endif; ?>
-        </tbody>
-      </table>
-    </div>
-    <a href="cadastroProdutos.php" class="btn-flutuante" title="Cadastrar Produto">
-      <i class="fas fa-circle-plus"></i>
-    </a>
   </div>
+
+  <h5 class="fw-semibold container mb-4">Produtos Recentes</h5>
+  <div class="table-responsive container mb-4">
+    <table class="table align-middle">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Categoria</th>
+          <th>Quantidade</th>
+          <th>Status</th>
+          <th>Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php if (empty($produtosRecentes)): ?>
+          <tr>
+            <td colspan="5" class="text-center text-muted">Nenhum produto encontrado.</td>
+          </tr>
+        <?php else: ?>
+          <?php foreach ($produtosRecentes as $produto): ?>
+            <tr>
+              <td><?= htmlspecialchars($produto['nome']) ?></td>
+              <td><?= htmlspecialchars($produto['categoria']) ?></td>
+              <td><?= $produto['quantidade'] ?></td>
+              <td>
+                <?php
+                if ($produto['quantidade'] == 0) {
+                  $classeStatus = 'status-esgotado';
+                  $textoStatus = 'Esgotado';
+                } elseif ($produto['quantidade'] <= 20) {
+                  $classeStatus = 'status-baixo';
+                  $textoStatus = 'Estoque Baixo';
+                } else {
+                  $classeStatus = 'status-disponivel';
+                  $textoStatus = 'Disponível';
+                }
+                ?>
+                <span class="<?= $classeStatus ?>"><?= $textoStatus ?></span>
+              </td>
+              <td><?= date("d/m/Y", strtotime($produto['data'])) ?></td>
+            </tr>
+          <?php endforeach; ?>
+        <?php endif; ?>
+      </tbody>
+    </table>
+  </div>
+
+  <a href="cadastroProdutos.php" class="btn-flutuante" title="Cadastrar Produto">
+    <i class="fas fa-circle-plus"></i>
+  </a>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
