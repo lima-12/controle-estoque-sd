@@ -1,3 +1,7 @@
+<?php
+    // $title = 'Sistema de Cadastro';
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -23,9 +27,15 @@
         <!-- modal personalizado -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         
-        <link rel="icon" href="../../assets/img/php.png" type="image/png">
-        <link rel="stylesheet" href="../assets/css/style.css">  
+        <!-- <link rel="icon" href="../../assets/img/php.png" type="image/png"> -->
+        <!-- <link rel="stylesheet" href="../../assets/css/style.css">   -->
 
-        <title>Sistema de Cadastro</title>
+        <title><?= $title ?? 'Stok'; ?></title>
 
     </head>
+
+    <style>
+        body {
+            padding-top: 60px;
+        }
+    </style>

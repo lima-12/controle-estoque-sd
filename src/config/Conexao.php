@@ -5,6 +5,8 @@ namespace App\config;
 use PDO;
 use PDOException;
 
+require_once __DIR__ . '/Config.php';
+
 class Conexao {
 
     private $host = DB_HOST;
