@@ -30,4 +30,4 @@
 
 <?php include_once(__DIR__ . '/../components/footer.php'); ?>
 
-<script src="../../assets/js/lista-produtos.js"></script>
+<script src="../../assets/js/produto/index.js"></script>
