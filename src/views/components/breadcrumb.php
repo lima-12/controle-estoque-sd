@@ -45,5 +45,5 @@
             <?php endforeach; ?>
         </ol>
     </div>
-    </nav>
+</nav>
 
