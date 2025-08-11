@@ -1,4 +1,4 @@
-// TODO : Implementar e corrigir a logica de verificação de email e senha, pra redirecionar para a tela principal, mesmo clicando a tela nao redireciona
+
 
 <?php
 session_start();
