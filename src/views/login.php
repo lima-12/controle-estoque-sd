@@ -1,7 +1,9 @@
-
-
 <?php
 // session_start();
+
+require_once __DIR__ . '/../Model/Usuario.php';
+
+use App\model\Usuario;
 
 $erroLogin = '';
 
@@ -9,32 +11,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email'] ?? '');
     $senha = $_POST['senha'] ?? '';
 
-    $usuariosPath = 'usuarios.json'; // ajuste o caminho se precisar
-    $usuarios = [];
-
-    if (file_exists($usuariosPath)) {
-        $jsonUsuarios = file_get_contents($usuariosPath);
-        $usuarios = json_decode($jsonUsuarios, true) ?? [];
-    }
-
-    $usuarioEncontrado = null;
-    foreach ($usuarios as $usuario) {
-        if (strtolower($usuario['email']) === strtolower($email)) {
-            // verifica senha com hash
-            if (password_verify($senha, $usuario['senha'])) {
-                $usuarioEncontrado = $usuario;
-                break;
+    if (!empty($email) && !empty($senha)) {
+        try {
+            $usuarioModel = new Usuario();
+            $usuarios = $usuarioModel->find($email);
+            // echo'<pre>'; print_r($usuarios); echo'</pre>'; exit;
+            
+            if ($usuarios && count($usuarios) > 0) {
+                $usuario = $usuarios[0];
+                
+                // Verifica senha com hash
+                if ($senha == $usuario['senha']) {
+                    // Armazena usuário na sessão
+                    // $_SESSION['usuario'] = $usuario;
+                    header('Location: produto/index.php');
+                    exit;
+                } else {
+                    $erroLogin = 'Email ou senha incorretos.';
+                }
+            } else {
+                $erroLogin = 'Email ou senha incorretos.';
             }
+        } catch (Exception $e) {
+            $erroLogin = 'Erro ao conectar com o banco de dados.';
         }
-    }
-
-    if ($usuarioEncontrado) {
-        // Armazena usuário na sessão
-        $_SESSION['usuario'] = $usuarioEncontrado;
-        header('Location: src/telaPrincipal.php');
-        exit;
     } else {
-        $erroLogin = 'Email ou senha incorretos.';
+        $erroLogin = 'Por favor, preencha todos os campos.';
     }
 }
 ?>
@@ -54,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="login-container">
     <div class="login-card ">
         <div class="d-flex flex-column align-items-center text-center mb-2">
-            <img src="../assets/img/logo-stok-azul-laranja.png" alt="Logo Stok" class="login-logo w-50" />
+            <img src="assets/img/logo-stok-azul-laranja.png" alt="Logo Stok" class="login-logo w-50" />
             <h1 class="login-title">Bem-vindo de volta</h1>
             <p class="login-subtitle">Entre na sua conta para continuar</p>
         </div>

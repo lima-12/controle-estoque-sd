@@ -6,7 +6,7 @@ use PDO;
 use PDOException;
 use App\config\Conexao;
 
-
+require_once __DIR__ . '/../config/Conexao.php';
 
 class Usuario {
 
@@ -49,178 +49,178 @@ class Usuario {
 
     } 
 
-    function insert($nome, $email, $telefone, $data_nasc, $cidade, $estado, $endereco, $senha){
+    // function insert($nome, $email, $telefone, $data_nasc, $cidade, $estado, $endereco, $senha){
 
-        try {
-            $stmt = $this->pdo->prepare("
-                INSERT INTO usuarios 
-                    (
-                        nome, 
-                        email, 
-                        telefone, 
-                        data_nasc, 
-                        cidade, 
-                        estado, 
-                        endereco, 
-                        senha
-                    ) 
-                VALUES 
-                    (
-                        :nome, 
-                        :email, 
-                        :telefone,
-                        :data_nasc, 
-                        :cidade, 
-                        :estado, 
-                        :endereco, 
-                        :senha
-                    )
-            ");
+    //     try {
+    //         $stmt = $this->pdo->prepare("
+    //             INSERT INTO usuarios 
+    //                 (
+    //                     nome, 
+    //                     email, 
+    //                     telefone, 
+    //                     data_nasc, 
+    //                     cidade, 
+    //                     estado, 
+    //                     endereco, 
+    //                     senha
+    //                 ) 
+    //             VALUES 
+    //                 (
+    //                     :nome, 
+    //                     :email, 
+    //                     :telefone,
+    //                     :data_nasc, 
+    //                     :cidade, 
+    //                     :estado, 
+    //                     :endereco, 
+    //                     :senha
+    //                 )
+    //         ");
     
-            // Vincula os parâmetros
-            $stmt->bindParam(':nome', $nome);
-            $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':telefone', $telefone);
-            $stmt->bindParam(':data_nasc', $data_nasc);
-            $stmt->bindParam(':cidade', $cidade);
-            $stmt->bindParam(':estado', $estado);
-            $stmt->bindParam(':endereco', $endereco);
-            $stmt->bindParam(':senha', $senha);
+    //         // Vincula os parâmetros
+    //         $stmt->bindParam(':nome', $nome);
+    //         $stmt->bindParam(':email', $email);
+    //         $stmt->bindParam(':telefone', $telefone);
+    //         $stmt->bindParam(':data_nasc', $data_nasc);
+    //         $stmt->bindParam(':cidade', $cidade);
+    //         $stmt->bindParam(':estado', $estado);
+    //         $stmt->bindParam(':endereco', $endereco);
+    //         $stmt->bindParam(':senha', $senha);
     
-            // Executa a declaração
-            return $stmt->execute();
+    //         // Executa a declaração
+    //         return $stmt->execute();
     
-            // Retorna o ID do último registro inserido, se necessário
-            // return $this->pdo->lastInsertId();
-        } catch(PDOException $e) {
-            // Se houver uma exceção, imprime o erro
-            return "Erro: " . $e->getMessage();
-        }
+    //         // Retorna o ID do último registro inserido, se necessário
+    //         // return $this->pdo->lastInsertId();
+    //     } catch(PDOException $e) {
+    //         // Se houver uma exceção, imprime o erro
+    //         return "Erro: " . $e->getMessage();
+    //     }
 
-    }
+    // }
 
-    function update($nome, $email, $telefone, $sexo, $data_nasc, $cidade, $estado, $endereco, $senha, $id){
-        try {
-            $stmt = $this->pdo->prepare("
-                UPDATE usuarios 
-                SET
-                    nome        = :nome,
-                    email       = :email, 
-                    telefone    = :telefone, 
-                    data_nasc   = :data_nasc, 
-                    cidade      = :cidade, 
-                    estado      = :estado, 
-                    endereco    = :endereco, 
-                    senha       = :senha
-                WHERE id = :id
-            ");
+    // function update($nome, $email, $telefone, $sexo, $data_nasc, $cidade, $estado, $endereco, $senha, $id){
+    //     try {
+    //         $stmt = $this->pdo->prepare("
+    //             UPDATE usuarios 
+    //             SET
+    //                 nome        = :nome,
+    //                 email       = :email, 
+    //                 telefone    = :telefone, 
+    //                 data_nasc   = :data_nasc, 
+    //                 cidade      = :cidade, 
+    //                 estado      = :estado, 
+    //                 endereco    = :endereco, 
+    //                 senha       = :senha
+    //             WHERE id = :id
+    //         ");
             
-            $stmt->bindParam(':nome', $nome);
-            $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':telefone', $telefone);
-            $stmt->bindParam(':data_nasc', $data_nasc);
-            $stmt->bindParam(':cidade', $cidade);
-            $stmt->bindParam(':estado', $estado);
-            $stmt->bindParam(':endereco', $endereco);
-            $stmt->bindParam(':senha', $senha);
-            $stmt->bindParam(':id', $id);
+    //         $stmt->bindParam(':nome', $nome);
+    //         $stmt->bindParam(':email', $email);
+    //         $stmt->bindParam(':telefone', $telefone);
+    //         $stmt->bindParam(':data_nasc', $data_nasc);
+    //         $stmt->bindParam(':cidade', $cidade);
+    //         $stmt->bindParam(':estado', $estado);
+    //         $stmt->bindParam(':endereco', $endereco);
+    //         $stmt->bindParam(':senha', $senha);
+    //         $stmt->bindParam(':id', $id);
             
-            $stmt->execute();
+    //         $stmt->execute();
             
-            return true;
+    //         return true;
 
-        } catch(PDOException $e) {
+    //     } catch(PDOException $e) {
             
-            return "Erro: " . $e->getMessage();
+    //         return "Erro: " . $e->getMessage();
 
-        }
-    }    
+    //     }
+    // }    
 
-    function delete($id){
+    // function delete($id){
 
-        try {
-            $stmt = $this->pdo->prepare("DELETE FROM usuarios WHERE id = :id");
-            $stmt->bindParam(':id', $id);
-            $stmt->execute();
+    //     try {
+    //         $stmt = $this->pdo->prepare("DELETE FROM usuarios WHERE id = :id");
+    //         $stmt->bindParam(':id', $id);
+    //         $stmt->execute();
 
-            return true;
+    //         return true;
 
-        } catch(PDOException $e) {
-            echo "Erro: " . $e->getMessage();
-            return false;
+    //     } catch(PDOException $e) {
+    //         echo "Erro: " . $e->getMessage();
+    //         return false;
 
-        }
-    }
+    //     }
+    // }
 
-    function verifica($email, $id) {
-        $stmt = $this->pdo->prepare('SELECT * FROM usuarios WHERE email = ? AND senha = ?');
-        $stmt->bindValue(1, $email, PDO::PARAM_STR);
-        $stmt->bindValue(2, $id, PDO::PARAM_INT);
+    // function verifica($email, $id) {
+    //     $stmt = $this->pdo->prepare('SELECT * FROM usuarios WHERE email = ? AND senha = ?');
+    //     $stmt->bindValue(1, $email, PDO::PARAM_STR);
+    //     $stmt->bindValue(2, $id, PDO::PARAM_INT);
         
-        $stmt->execute();
+    //     $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+    //     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // }
 
-    function updateRecuperaSenha($chave_recuperar_senha, $id) {
-        try {
+    // function updateRecuperaSenha($chave_recuperar_senha, $id) {
+    //     try {
 
-            $stmt = $this->pdo->prepare('
-                UPDATE usuarios 
-                SET recuperar_senha = :recuperar_senha 
-                WHERE id = :id
-            ');
+    //         $stmt = $this->pdo->prepare('
+    //             UPDATE usuarios 
+    //             SET recuperar_senha = :recuperar_senha 
+    //             WHERE id = :id
+    //         ');
 
-            $stmt->bindParam(':recuperar_senha', $chave_recuperar_senha, PDO::PARAM_STR);
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    //         $stmt->bindParam(':recuperar_senha', $chave_recuperar_senha, PDO::PARAM_STR);
+    //         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
-            $stmt->execute();
+    //         $stmt->execute();
 
-            return true;
+    //         return true;
 
-        } catch(PDOException $e) {
-            return "Erro: " . $e->getMessage();
-        }
-    }
+    //     } catch(PDOException $e) {
+    //         return "Erro: " . $e->getMessage();
+    //     }
+    // }
 
-    function getRecuperaSenha($hash) {
+    // function getRecuperaSenha($hash) {
 
-        try {
+    //     try {
 
-            $stmt = $this->pdo->prepare('SELECT * FROM usuarios WHERE recuperar_senha = :recuperar_senha');
-            $stmt->bindParam(':recuperar_senha', $hash, PDO::PARAM_STR);
+    //         $stmt = $this->pdo->prepare('SELECT * FROM usuarios WHERE recuperar_senha = :recuperar_senha');
+    //         $stmt->bindParam(':recuperar_senha', $hash, PDO::PARAM_STR);
 
-            $stmt->execute();
+    //         $stmt->execute();
     
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    //         return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        } catch(PDOException $e) {
-            return "Erro: " . $e->getMessage();
-        }
+    //     } catch(PDOException $e) {
+    //         return "Erro: " . $e->getMessage();
+    //     }
 
-    }
+    // }
 
-    function alterSenha($senha, $id) {
-        try {
-            $stmt = $this->pdo->prepare('
-                UPDATE usuarios 
-                SET 
-                    senha       = :senha_usuario,
-                    recuperar_senha     = :recuperar_senha
-                WHERE id = :id
-            ');
+    // function alterSenha($senha, $id) {
+    //     try {
+    //         $stmt = $this->pdo->prepare('
+    //             UPDATE usuarios 
+    //             SET 
+    //                 senha       = :senha_usuario,
+    //                 recuperar_senha     = :recuperar_senha
+    //             WHERE id = :id
+    //         ');
 
-            $stmt->bindParam(':senha_usuario', $senha, PDO::PARAM_STR);
-            $stmt->bindValue(':recuperar_senha', NULL, PDO::PARAM_NULL);
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    //         $stmt->bindParam(':senha_usuario', $senha, PDO::PARAM_STR);
+    //         $stmt->bindValue(':recuperar_senha', NULL, PDO::PARAM_NULL);
+    //         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
-            $stmt->execute();
+    //         $stmt->execute();
     
-            return true;
+    //         return true;
 
-        } catch(PDOException $e) {
-            return "Erro: " . $e->getMessage();
-        }
-    }
+    //     } catch(PDOException $e) {
+    //         return "Erro: " . $e->getMessage();
+    //     }
+    // }
 
 }

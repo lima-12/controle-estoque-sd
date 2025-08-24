@@ -14,19 +14,19 @@ document.querySelectorAll('.password-toggle').forEach(toggle => {
 });
 
 // Simulate loading on form submit
-document.querySelector('form').addEventListener('submit', function(e) {
-    e.preventDefault();
+// document.querySelector('form').addEventListener('submit', function(e) {
+//     e.preventDefault();
     
-    const button = document.getElementById('loginButton');
-    const buttonText = document.getElementById('buttonText');
+//     const button = document.getElementById('loginButton');
+//     const buttonText = document.getElementById('buttonText');
     
-    // Show loading state
-    button.disabled = true;
-    button.innerHTML = '<span class="loading-spinner"></span> Entrando...';
+//     // Show loading state
+//     button.disabled = true;
+//     button.innerHTML = '<span class="loading-spinner"></span> Entrando...';
     
-    // Simulate API call
-    setTimeout(function() {
-        button.disabled = false;
-        button.innerHTML = '<span id="buttonText">Entrar</span><i class="fas fa-arrow-right ms-2"></i>';
-    }, 2000);
-});
+//     // Simulate API call
+//     setTimeout(function() {
+//         button.disabled = false;
+//         button.innerHTML = '<span id="buttonText">Entrar</span><i class="fas fa-arrow-right ms-2"></i>';
+//     }, 2000);
+// });
