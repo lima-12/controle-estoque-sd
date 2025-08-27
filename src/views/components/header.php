@@ -25,6 +25,8 @@
         
         <!-- <link rel="icon" href="../../assets/img/php.png" type="image/png"> -->
         <!-- <link rel="stylesheet" href="../../assets/css/style.css">   -->
+        <link rel="stylesheet" href="../../assets/css/botao.css">
+        <link rel="stylesheet" href="../../assets/css/produto-cards.css">
 
         <title><?= $title ?? 'Stok'; ?></title>
 
