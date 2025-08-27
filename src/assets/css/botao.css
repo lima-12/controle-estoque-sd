@@ -1,0 +1,413 @@
+/* ============================================
+   SISTEMA DE BOTÕES PADRONIZADOS - STOK
+   Baseado no design da tela de login
+   ============================================ */
+
+/* Variáveis CSS para cores do sistema */
+:root {
+    --cor-laranja: #f98f19;
+    --cor-laranja-hover: #e08115;
+    --cor-laranja-claro: #ffca2c;
+    --cor-azul: #172d68;
+    --cor-azul-claro: #2a4a8a;
+    --cor-branco: #ffffff;
+    --cor-cinza-claro: rgba(255, 255, 255, 0.1);
+    --cor-cinza-medio: rgba(255, 255, 255, 0.3);
+    --cor-cinza-escuro: rgba(0, 0, 0, 0.1);
+    --cor-sucesso: #28a745;
+    --cor-sucesso-hover: #218838;
+    --cor-perigo: #dc3545;
+    --cor-perigo-hover: #c82333;
+    --cor-info: #17a2b8;
+    --cor-info-hover: #138496;
+    --cor-aviso: #ffc107;
+    --cor-aviso-hover: #e0a800;
+    --cor-secundario: #6c757d;
+    --cor-secundario-hover: #5a6268;
+    --cor-escuro: #343a40;
+    --cor-escuro-hover: #23272b;
+}
+
+/* ============================================
+   CLASSE BASE PARA TODOS OS BOTÕES
+   ============================================ */
+.btn-stok {
+    display: inline-block;
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-stok:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(249, 143, 25, 0.25);
+}
+
+.btn-stok:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+/* ============================================
+   BOTÃO PRIMARY (LARANJA - COR PRINCIPAL)
+   ============================================ */
+.btn-stok-primary {
+    background-color: var(--cor-laranja);
+    border-color: var(--cor-laranja);
+    color: var(--cor-branco);
+}
+
+.btn-stok-primary:hover {
+    background-color: var(--cor-laranja-hover);
+    border-color: var(--cor-laranja-hover);
+    color: var(--cor-branco);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(249, 143, 25, 0.3);
+}
+
+.btn-stok-primary:active {
+    background-color: var(--cor-laranja-hover);
+    border-color: var(--cor-laranja-hover);
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(249, 143, 25, 0.2);
+}
+
+/* ============================================
+   BOTÃO SECONDARY (AZUL)
+   ============================================ */
+.btn-stok-secondary {
+    background-color: var(--cor-azul);
+    border-color: var(--cor-azul);
+    color: var(--cor-branco);
+}
+
+.btn-stok-secondary:hover {
+    background-color: var(--cor-azul-claro);
+    border-color: var(--cor-azul-claro);
+    color: var(--cor-branco);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(23, 45, 104, 0.3);
+}
+
+.btn-stok-secondary:active {
+    background-color: var(--cor-azul-claro);
+    border-color: var(--cor-azul-claro);
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(23, 45, 104, 0.2);
+}
+
+/* ============================================
+   BOTÃO SUCCESS (VERDE)
+   ============================================ */
+.btn-stok-success {
+    background-color: var(--cor-sucesso);
+    border-color: var(--cor-sucesso);
+    color: var(--cor-branco);
+}
+
+.btn-stok-success:hover {
+    background-color: var(--cor-sucesso-hover);
+    border-color: var(--cor-sucesso-hover);
+    color: var(--cor-branco);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.btn-stok-success:active {
+    background-color: var(--cor-sucesso-hover);
+    border-color: var(--cor-sucesso-hover);
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(40, 167, 69, 0.2);
+}
+
+/* ============================================
+   BOTÃO DANGER (VERMELHO)
+   ============================================ */
+.btn-stok-danger {
+    background-color: var(--cor-perigo);
+    border-color: var(--cor-perigo);
+    color: var(--cor-branco);
+}
+
+.btn-stok-danger:hover {
+    background-color: var(--cor-perigo-hover);
+    border-color: var(--cor-perigo-hover);
+    color: var(--cor-branco);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+.btn-stok-danger:active {
+    background-color: var(--cor-perigo-hover);
+    border-color: var(--cor-perigo-hover);
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(220, 53, 69, 0.2);
+}
+
+/* ============================================
+   BOTÃO WARNING (AMARELO)
+   ============================================ */
+.btn-stok-warning {
+    background-color: var(--cor-aviso);
+    border-color: var(--cor-aviso);
+    color: var(--cor-escuro);
+}
+
+.btn-stok-warning:hover {
+    background-color: var(--cor-aviso-hover);
+    border-color: var(--cor-aviso-hover);
+    color: var(--cor-escuro);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+}
+
+.btn-stok-warning:active {
+    background-color: var(--cor-aviso-hover);
+    border-color: var(--cor-aviso-hover);
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(255, 193, 7, 0.2);
+}
+
+/* ============================================
+   BOTÃO INFO (AZUL CLARO)
+   ============================================ */
+.btn-stok-info {
+    background-color: var(--cor-info);
+    border-color: var(--cor-info);
+    color: var(--cor-branco);
+}
+
+.btn-stok-info:hover {
+    background-color: var(--cor-info-hover);
+    border-color: var(--cor-info-hover);
+    color: var(--cor-branco);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(23, 162, 184, 0.3);
+}
+
+.btn-stok-info:active {
+    background-color: var(--cor-info-hover);
+    border-color: var(--cor-info-hover);
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(23, 162, 184, 0.2);
+}
+
+/* ============================================
+   BOTÃO LIGHT (CLARO)
+   ============================================ */
+.btn-stok-light {
+    background-color: var(--cor-cinza-claro);
+    border-color: var(--cor-cinza-medio);
+    color: var(--cor-branco);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.btn-stok-light:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: var(--cor-laranja);
+    color: var(--cor-branco);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+.btn-stok-light:active {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: var(--cor-laranja);
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================
+   BOTÃO DARK (ESCURO)
+   ============================================ */
+.btn-stok-dark {
+    background-color: var(--cor-escuro);
+    border-color: var(--cor-escuro);
+    color: var(--cor-branco);
+}
+
+.btn-stok-dark:hover {
+    background-color: var(--cor-escuro-hover);
+    border-color: var(--cor-escuro-hover);
+    color: var(--cor-branco);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(52, 58, 64, 0.3);
+}
+
+.btn-stok-dark:active {
+    background-color: var(--cor-escuro-hover);
+    border-color: var(--cor-escuro-hover);
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(52, 58, 64, 0.2);
+}
+
+/* ============================================
+   BOTÃO OUTLINE (CONTORNO)
+   ============================================ */
+.btn-stok-outline-primary {
+    background-color: transparent;
+    border-color: var(--cor-laranja);
+    color: var(--cor-laranja);
+}
+
+.btn-stok-outline-primary:hover {
+    background-color: var(--cor-laranja);
+    border-color: var(--cor-laranja);
+    color: var(--cor-branco);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(249, 143, 25, 0.3);
+}
+
+.btn-stok-outline-secondary {
+    background-color: transparent;
+    border-color: var(--cor-azul);
+    color: var(--cor-azul);
+}
+
+.btn-stok-outline-secondary:hover {
+    background-color: var(--cor-azul);
+    border-color: var(--cor-azul);
+    color: var(--cor-branco);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(23, 45, 104, 0.3);
+}
+
+/* ============================================
+   TAMANHOS DOS BOTÕES
+   ============================================ */
+.btn-stok-sm {
+    padding: 6px 12px;
+    font-size: 0.875rem;
+    border-radius: 6px;
+}
+
+.btn-stok-lg {
+    padding: 12px 24px;
+    font-size: 1.125rem;
+    border-radius: 10px;
+}
+
+.btn-stok-xl {
+    padding: 16px 32px;
+    font-size: 1.25rem;
+    border-radius: 12px;
+}
+
+/* ============================================
+   BOTÕES DE LARGURA COMPLETA
+   ============================================ */
+.btn-stok-block {
+    display: block;
+    width: 100%;
+}
+
+/* ============================================
+   BOTÕES COM ÍCONES
+   ============================================ */
+.btn-stok i {
+    margin-right: 8px;
+}
+
+.btn-stok i:only-child {
+    margin-right: 0;
+}
+
+/* ============================================
+   GRUPO DE BOTÕES
+   ============================================ */
+.btn-stok-group {
+    display: inline-flex;
+    vertical-align: middle;
+}
+
+.btn-stok-group > .btn-stok {
+    position: relative;
+    flex: 1 1 auto;
+}
+
+.btn-stok-group > .btn-stok:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.btn-stok-group > .btn-stok:not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+/* ============================================
+   RESPONSIVIDADE
+   ============================================ */
+@media (max-width: 576px) {
+    .btn-stok {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .btn-stok-lg {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+    
+    .btn-stok-xl {
+        padding: 12px 24px;
+        font-size: 1.1rem;
+    }
+}
+
+/* ============================================
+   ANIMAÇÕES ESPECIAIS
+   ============================================ */
+.btn-stok-pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(249, 143, 25, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(249, 143, 25, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(249, 143, 25, 0);
+    }
+}
+
+.btn-stok-loading {
+    position: relative;
+    color: transparent !important;
+}
+
+.btn-stok-loading::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    margin-left: -8px;
+    margin-top: -8px;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

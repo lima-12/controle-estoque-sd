@@ -1,0 +1,35 @@
+/* ============================================
+   ESTILOS MÍNIMOS PARA CARDS DE PRODUTOS
+   ============================================ */
+
+/* Container da imagem do produto - apenas altura fixa */
+.product-image-container {
+    height: 170px;
+    background-color: #f8f9fa;
+}
+
+.product-image-container img {
+    max-height: 160px;
+    object-fit: contain;
+}
+
+/* Responsividade básica */
+/* @media (max-width: 768px) {
+    .product-image-container {
+        height: 150px;
+    }
+    
+    .product-image-container img {
+        max-height: 140px;
+    }
+}
+
+@media (max-width: 576px) {
+    .product-image-container {
+        height: 130px;
+    }
+    
+    .product-image-container img {
+        max-height: 120px;
+    }
+} */

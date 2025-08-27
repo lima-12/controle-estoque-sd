@@ -1,31 +1,68 @@
 
 document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('form');
+    const form = document.querySelector('.search-form');
     const input = form.querySelector('input[type="search"]');
-    const row = document.querySelector('.row');
+    const produtosGrid = document.getElementById('produtos-grid');
+    const noProducts = document.getElementById('no-products');
 
     function buscarProdutos(busca = '') {
         fetch(`../../controllers/produtoController.php?busca=${encodeURIComponent(busca)}`)
             .then(response => response.json())
             .then(produtos => {
-                row.innerHTML = '';
+                produtosGrid.innerHTML = '';
+                
+                if (produtos.length === 0) {
+                    noProducts.classList.remove('d-none');
+                    return;
+                }
+                
+                noProducts.classList.add('d-none');
+                
                 produtos.forEach(produto => {
-                    row.innerHTML += `
-                        <div class="col-sm-12 col-md-4 col-lg-3 mb-4">
-                            <div class="card h-100">
-                                <div style="height:180px; display:flex; align-items:center; justify-content:center;">
-                                    <img src="/src/assets/img/produtos/${produto.imagem}" class="img-fluid" alt="${produto.nome}" style="max-height: 180px;">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">${produto.nome}</h5>
-                                    <p class="card-text">Preço: R$ ${parseFloat(produto.preco).toLocaleString('pt-BR', {minimumFractionDigits: 2})}</p>
-                                    <p class="card-text">Quantidade: ${produto.quantidade}</p>
-                                    <a href="/src/views/produto/show.php?id=${produto.id}" class="btn btn-primary mt-2">Detalhes</a>
-                                </div>
+                    // Determinar status do estoque
+                    let classeStatus, textoStatus;
+                    if (produto.quantidade == 0) {
+                        classeStatus = 'bg-danger text-white';
+                        textoStatus = 'Esgotado';
+                    } else if (produto.quantidade <= 20) {
+                        classeStatus = 'bg-warning text-dark';
+                        textoStatus = 'Estoque Baixo';
+                    } else {
+                        classeStatus = 'bg-success text-white';
+                        textoStatus = 'Disponível';
+                    }
+
+                    produtosGrid.innerHTML += `
+                        <div class="produto-card">
+                            <div class="produto-status">
+                                <span class="badge ${classeStatus}">${textoStatus}</span>
+                            </div>
+                            
+                            <div class="produto-image-container">
+                                <img src="../../assets/img/produtos/${produto.imagem}" alt="${produto.nome}">
+                            </div>
+                            
+                            <div class="produto-info">
+                                <h5 class="produto-nome">${produto.nome}</h5>
+                                <p class="produto-categoria">${produto.categoria || 'Sem categoria'}</p>
+                                <p class="produto-codigo">Código: ${produto.codigo_barras || 'N/A'}</p>
+                                <div class="produto-preco">R$ ${parseFloat(produto.preco).toLocaleString('pt-BR', {minimumFractionDigits: 2})}</div>
+                                <a href="show.php?id=${produto.id}" class="btn-detalhes">
+                                    <i class="fas fa-eye me-2"></i>Ver Detalhes
+                                </a>
                             </div>
                         </div>
                     `;
                 });
+            })
+            .catch(error => {
+                console.error('Erro ao buscar produtos:', error);
+                produtosGrid.innerHTML = '';
+                noProducts.classList.remove('d-none');
+                noProducts.innerHTML = `
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>Erro ao carregar produtos</p>
+                `;
             });
     }
 
@@ -36,5 +73,13 @@ document.addEventListener('DOMContentLoaded', function() {
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         buscarProdutos(input.value);
+    });
+
+    // Busca em tempo real (opcional)
+    input.addEventListener('input', function() {
+        const busca = this.value.trim();
+        if (busca.length >= 2 || busca.length === 0) {
+            buscarProdutos(busca);
+        }
     });
 });
