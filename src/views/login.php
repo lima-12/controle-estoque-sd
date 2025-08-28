@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="login-container">
     <div class="login-card ">
         <div class="d-flex flex-column align-items-center text-center mb-2">
-            <img src="assets/img/logo-stok-azul-laranja.png" alt="Logo Stok" class="login-logo w-50" />
+            <img src="../assets/img/logo-stok-azul-laranja.png" alt="Logo Stok" class="login-logo w-50" />
             <h1 class="login-title">Bem-vindo de volta</h1>
             <p class="login-subtitle">Entre na sua conta para continuar</p>
         </div>
@@ -97,17 +97,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit" class="btn btn-entrar w-100">
                 Entrar
             </button>
-
-            <div class="login-footer mt-3 text-center">
-                <span class="texto-abaixo">Não tem uma conta?</span>
-                <a href="cadastro.php" class="link-orange">Cadastre-se</a>
-            </div>
         </form>
     </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../assets/js/script2.js"></script>
+<script src="../assets/js/login.js"></script>
 
 </body>
 </html>
