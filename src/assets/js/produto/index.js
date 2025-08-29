@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.querySelector('.produtos-navbar .d-flex');
-    const input = form.querySelector('input[type="search"]');
+    const input = form ? form.querySelector('input[type="search"]') : null;
     const produtosGrid = document.getElementById('produtos-grid');
     const noProducts = document.getElementById('no-products');
 
@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 noProducts.classList.add('d-none');
                 
                 produtos.forEach(produto => {
-                    // Determinar status do estoque
                     let classeStatus, textoStatus;
                     if (produto.quantidade == 0) {
                         classeStatus = 'bg-danger text-white';
@@ -36,11 +35,9 @@ document.addEventListener('DOMContentLoaded', function() {
                             <div class="produto-status">
                                 <span class="badge ${classeStatus}">${textoStatus}</span>
                             </div>
-                            
                             <div class="produto-image-container">
                                 <img src="../../assets/img/produtos/${produto.imagem}" alt="${produto.nome}">
                             </div>
-                            
                             <div class="produto-info">
                                 <h5 class="produto-nome">${produto.nome}</h5>
                                 <p class="produto-categoria">${produto.categoria || 'Sem categoria'}</p>
@@ -65,20 +62,19 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 
-    // Busca inicial
     buscarProdutos();
 
-    // Ao submeter o formulário
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        buscarProdutos(input.value);
-    });
+    if (form && input) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            buscarProdutos(input.value);
+        });
 
-    // Busca em tempo real (opcional)
-    input.addEventListener('input', function() {
-        const busca = this.value.trim();
-        if (busca.length >= 2 || busca.length === 0) {
-            buscarProdutos(busca);
-        }
-    });
+        input.addEventListener('input', function() {
+            const busca = this.value.trim();
+            if (busca.length >= 2 || busca.length === 0) {
+                buscarProdutos(busca);
+            }
+        });
+    }
 });

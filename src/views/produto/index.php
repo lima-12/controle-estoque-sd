@@ -14,12 +14,8 @@
 </head>
 
 <body>
-    <nav class="produtos-navbar fixed-top">
-        <div class="container-fluid d-flex justify-content-between align-items-center">
 
-
-        </div>
-    </nav>
+    <?php include_once(__DIR__ . '/../components/navbar.php'); ?>
 
     <?php 
         $breadcrumbs = [
