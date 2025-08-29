@@ -20,11 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($usuarios && count($usuarios) > 0) {
                 $usuario = $usuarios[0];
                 
-                // Verifica senha com hash
                 if ($senha == $usuario['senha']) {
                     // Armazena usuário na sessão
                     // $_SESSION['usuario'] = $usuario;
-                    header('Location: produto/index.php');
+                    header('Location: home.php');
                     exit;
                 } else {
                     $erroLogin = 'Email ou senha incorretos.';

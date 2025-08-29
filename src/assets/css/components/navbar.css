@@ -1,0 +1,8 @@
+/* Tamanho padrão da logo no navbar */
+.navbar .navbar-logo{
+    height: 60px;
+    max-height: 60px;
+    width: auto;
+    display: block;
+    border-radius: 6px;
+}

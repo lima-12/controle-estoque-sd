@@ -47,6 +47,16 @@
 
     <div class="navbar-spacer"></div>
 
+    <br/>
+    <br/>
+    <?php 
+        $breadcrumbs = [
+            ['label' => 'Home', 'href' => dirname($_SERVER['SCRIPT_NAME']) . '/../home.php'],
+            ['label' => 'Produtos']
+        ];
+        include_once(__DIR__ . '/../components/breadcrumb.php');
+    ?>
+
     <div class="produtos-container">
         <div class="produtos-grid" id="produtos-grid">
             </div>

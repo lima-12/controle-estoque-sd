@@ -1,11 +1,7 @@
-<!-- Barra de navegação com expansão em telas grandes e plano de fundo terciário -->
-<nav class="navbar-expand-lg navbar bg-primary fixed-top">
-    <!-- Contêiner fluido para envolver os elementos -->
+<nav class="navbar-expand-lg navbar bg-primary">
     <div class="container-fluid">
-
-        <!-- Link para o logotipo da página -->
         <a class="navbar-brand" href="#">
-            <!-- <img src="./assets/logo.png" alt="Logo da cafeteria Serenatto"> -->
+            <img src="../assets/img/logo-stok-azul-laranja.png" alt="Logo Stok" class="navbar-logo me-2" />
         </a>
         
         <!-- Botão de alternância para abrir o menu offcanvas -->
@@ -18,7 +14,7 @@
             <!-- Cabeçalho do menu offcanvas com título ou logotipo -->
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
-                    <img src="./assets/logo-mobile.png" alt="Logo da cafeteria Serenatto">
+                    <img src="../assets/img/logo-stok-azul-laranja.png" alt="Logo Stok" class="navbar-logo me-2" />
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
@@ -29,7 +25,7 @@
                         <a class="nav-link active" aria-current="page" href="#">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="<?php echo dirname($_SERVER['SCRIPT_NAME']); ?>/index.php">Produtos</a>
+                        <a class="nav-link active" aria-current="page" href="<?php echo dirname($_SERVER['SCRIPT_NAME']); ?>/produto/index.php">Produtos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="<?php echo dirname($_SERVER['SCRIPT_NAME']); ?>/show.php">Filiais</a>
@@ -37,14 +33,6 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#contato">Relatórios</a>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" role="switch" id="modo-noturno">
-                                <label class="form-check-label" for="modo-noturno">Modo noturno</label>
-                            </div>
-                        </a>
-                    </li> -->
                 </ul>
             </div>
         </div>
