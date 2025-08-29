@@ -28,9 +28,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     ];
 
     $produtosRecentes[] = $novoProduto;
-
-    // Salva no JSON
-    file_put_contents($jsonPathProdutos, json_encode($produtosRecentes, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 }
 ?>
 
@@ -46,7 +43,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- CSS -->
-    <link rel="stylesheet" href="src/assets/css/cadastroProdutos.css">
+    <link rel="stylesheet" href="../../assets/css/produto/cadastroProdutos.css" />
+
 </head>
 <body>
     <!-- Container principal do formulário -->
@@ -68,14 +66,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <div class="corpo-formulario">
                 <form method="post">
                     <!-- Upload de imagem do produto (opcional) -->
-                    <!-- <div class="rotulo-campo">Imagem do Produto (opcional)</div>
+                    <div class="rotulo-campo">Imagem do Produto (opcional)</div>
                     <label class="area-upload" id="area-upload">
                         <input type="file" id="inputArquivo" name="imagemProduto" accept="image/*">
                         <div class="conteudo-upload">
                             <i class="fas fa-image icone-upload"></i>
                             <p class="texto-upload">Selecione uma imagem</p>
                         </div>
-                    </label> -->
+                    </label>
 
                     <!-- Campo de nome do produto -->
                     <div class="rotulo-campo">Nome do Produto</div>
@@ -89,19 +87,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <div class="campo-input">
                         <i class="fas fa-align-left icone-input"></i>
                         <textarea class="form-control area-descricao" name="descricao" placeholder="Detalhes do produto..."></textarea>
-                    </div>
-
-                    <!-- Dropdown de categoria com ícone e opção neutra -->
-                    <div class="rotulo-campo">Categoria</div>
-                    <div class="campo-input" style="position: relative;">
-                        <i class="fas fa-tags icone-input"></i>
-                        <select class="form-control entrada-produto" name="categoria" required style="padding-right: 2.5rem;">
-                            <option value="">Selecione uma categoria</option>
-                            <?php foreach ($categorias as $categoria): ?>
-                                <option value="<?= htmlspecialchars($categoria['nome']) ?>"><?= htmlspecialchars($categoria['nome']) ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                        <i class="fas fa-chevron-down" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); pointer-events: none; color: #666;"></i>
                     </div>
 
                     <!-- Linha com os campos de quantidade e preço -->

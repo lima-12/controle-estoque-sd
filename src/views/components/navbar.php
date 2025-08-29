@@ -1,7 +1,7 @@
 <nav class="navbar-expand-lg navbar bg-primary">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
-            <img src="../assets/img/logo-stok-azul-laranja.png" alt="Logo Stok" class="navbar-logo me-2" />
+        <img src="<?php echo isset($logoPath) ? $logoPath : '../../assets/img/logo-stok-azul-laranja.png'; ?>" alt="Logo Stok" class="navbar-logo" style="height:60px;"/>
         </a>
         
         <!-- Botão de alternância para abrir o menu offcanvas -->

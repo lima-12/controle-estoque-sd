@@ -40,8 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             </div>
                             <div class="produto-info">
                                 <h5 class="produto-nome">${produto.nome}</h5>
-                                <p class="produto-categoria">${produto.categoria || 'Sem categoria'}</p>
-                                <p class="produto-codigo">Código: ${produto.codigo_barras || 'N/A'}</p>
+                                <p class="produto-quantidade">Quantidade: ${produto.quantidade}</p>
                                 <div class="produto-preco">R$ ${parseFloat(produto.preco).toLocaleString('pt-BR', {minimumFractionDigits: 2})}</div>
                                 <a href="show.php?id=${produto.id}" class="btn-detalhes">
                                     <i class="fas fa-eye me-2"></i>Ver Detalhes

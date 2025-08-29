@@ -111,7 +111,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 25px;
-    margin-top: 30px;
+    margin-top:20px;
 }
 
 .produto-card {
@@ -222,6 +222,36 @@ body {
     color: #a0a2a5;
     margin-bottom: 20px;
 }
+
+/* Botão flutuante para adicionar produto */
+.btn-add-product {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #0d6efd; /* Azul bootstrap */
+    color: #fff;
+    font-weight: 600;
+    padding: 12px 20px;
+    border-radius: 50px; /* Arredondado */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    z-index: 1000; /* Fica acima de tudo */
+}
+
+.btn-add-product i {
+    font-size: 1.2rem;
+}
+
+.btn-add-product:hover {
+    background-color: #f98f19; /* Laranja no hover */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+}
+
 
 /* Responsividade */
 @media (max-width: 768px) {

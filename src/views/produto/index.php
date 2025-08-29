@@ -17,23 +17,31 @@
 
     <?php include_once(__DIR__ . '/../components/navbar.php'); ?>
 
-    <?php 
-        $breadcrumbs = [
-            ['label' => 'Home', 'href' => dirname($_SERVER['SCRIPT_NAME']) . '/../home.php'],
-            ['label' => 'Produtos']
-        ];
-        include_once(__DIR__ . '/../components/breadcrumb.php');
-    ?>
+    <div class="produtos-container px-4">
+        <!-- Breadcrumb alinhado ao grid -->
+        <div class="breadcrump">
+            <?php 
+                $breadcrumbs = [
+                    ['label' => 'Home', 'href' => dirname($_SERVER['SCRIPT_NAME']) . '/../home.php'],
+                    ['label' => 'Produtos']
+                ];
+                include_once(__DIR__ . '/../components/breadcrumb.php');
+            ?>
+        </div>
 
-    <div class="produtos-container">
-        <div class="produtos-grid" id="produtos-grid">
-            </div>
+        <!-- Grid de produtos -->
+        <div class="produtos-grid" id="produtos-grid"></div>
 
         <div class="no-products d-none" id="no-products">
             <i class="fas fa-box-open"></i>
             <p>Nenhum produto encontrado</p>
         </div>
     </div>
+
+    <a href="cadastroProdutos.php" class="btn-add-product">
+        <i class="fas fa-plus"></i> Adicionar Produto
+    </a>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../../assets/js/produto/index.js"></script>
