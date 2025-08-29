@@ -17,38 +17,10 @@
     <nav class="produtos-navbar fixed-top">
         <div class="container-fluid d-flex justify-content-between align-items-center">
 
-            <a class="navbar-brand d-flex align-items-center me-auto" href="#">
-                <img src="../../assets/img/logo-stok-azul-laranja.png" alt="Logo Stok" class="navbar-logo me-2" />
-            </a>
-
-            <ul class="navbar-nav flex-row align-items-center">
-                <li class="nav-item me-3">
-                    <form class="d-flex" role="search">
-                        <div class="search-input-group">
-                            <i class="fas fa-search search-icon"></i>
-                            <input class="form-control search-input" type="search" placeholder="Pesquisar..." aria-label="Pesquisar">
-                        </div>
-                    </form>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-user"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-shopping-cart"></i>
-                    </a>
-                </li>
-            </ul>
 
         </div>
     </nav>
 
-    <div class="navbar-spacer"></div>
-
-    <br/>
-    <br/>
     <?php 
         $breadcrumbs = [
             ['label' => 'Home', 'href' => dirname($_SERVER['SCRIPT_NAME']) . '/../home.php'],
