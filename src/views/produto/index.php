@@ -1,5 +1,4 @@
 <?php
-    // echo "teste";exit();
     $title = 'Lista Produtos';
 ?>
 
@@ -15,38 +14,43 @@
 </head>
 
 <body>
+    <nav class="produtos-navbar fixed-top">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+
+            <a class="navbar-brand d-flex align-items-center me-auto" href="#">
+                <img src="../../assets/img/logo-stok-azul-laranja.png" alt="Logo Stok" class="navbar-logo me-2" />
+            </a>
+
+            <ul class="navbar-nav flex-row align-items-center">
+                <li class="nav-item me-3">
+                    <form class="d-flex" role="search">
+                        <div class="search-input-group">
+                            <i class="fas fa-search search-icon"></i>
+                            <input class="form-control search-input" type="search" placeholder="Pesquisar..." aria-label="Pesquisar">
+                        </div>
+                    </form>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <div class="navbar-spacer"></div>
+
     <div class="produtos-container">
-        <!-- Header da página -->
-        <div class="produtos-header">
-            <div class="d-flex flex-column align-items-center text-center">
-                <img src="../../assets/img/logo-stok-azul-laranja.png" alt="Logo Stok" class="w-25 mb-3" />
-                <h1 class="produtos-title">Nossos Produtos</h1>
-                <p class="produtos-subtitle">Gerencie seu estoque de forma eficiente</p>
+        <div class="produtos-grid" id="produtos-grid">
             </div>
 
-            <!-- Formulário de busca -->
-            <form class="search-form d-flex" role="search">
-                <div class="search-input-group flex-grow-1">
-                    <i class="fas fa-search search-icon"></i>
-                    <input 
-                        class="form-control search-input" 
-                        type="search" 
-                        placeholder="Pesquisar produto..." 
-                        aria-label="Pesquisar Produto"
-                    />
-                </div>
-                <button class="btn btn-search" type="submit">
-                    <i class="fas fa-search me-2"></i>Pesquisar
-                </button>
-            </form>
-        </div>
-
-        <!-- Grid de produtos -->
-        <div class="produtos-grid" id="produtos-grid">
-            <!-- Os produtos serão carregados aqui via JavaScript -->
-        </div>
-
-        <!-- Mensagem quando não há produtos -->
         <div class="no-products d-none" id="no-products">
             <i class="fas fa-box-open"></i>
             <p>Nenhum produto encontrado</p>

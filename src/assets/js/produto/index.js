@@ -1,6 +1,5 @@
-
 document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('.search-form');
+    const form = document.querySelector('.produtos-navbar .d-flex');
     const input = form.querySelector('input[type="search"]');
     const produtosGrid = document.getElementById('produtos-grid');
     const noProducts = document.getElementById('no-products');
