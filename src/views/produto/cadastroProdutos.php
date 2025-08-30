@@ -44,9 +44,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- CSS -->
     <link rel="stylesheet" href="../../assets/css/produto/cadastroProdutos.css" />
+    <link rel="stylesheet" href="../../assets/css/components/navbar.css" />
 
 </head>
 <body>
+    <?php include_once(__DIR__ . '/../components/navbar.php'); ?>
+    
     <!-- Container principal do formulário -->
     <div class="container-formulario">
         <!-- Cartão com o conteúdo do formulário -->
@@ -125,6 +128,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <!-- Scripts Bootstrap e JS personalizado -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="src/assets/js/cadastroProdutos.js"></script>
+    <script src="../../assets/js/produto/cadastroProdutos.js"></script>
 </body>
 </html>

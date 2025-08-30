@@ -11,11 +11,41 @@ if (strpos($currentScript, '/home.php') !== false) {
 } else {
     $basePath = '../assets/';
 }
+
+// Calcula os caminhos corretos para os links baseado na página atual
+$homePath = '';
+$produtosPath = '';
+$relatoriosPath = '';
+
+// Se estamos na página home.php
+if (strpos($currentScript, '/home.php') !== false) {
+    $homePath = './home.php';
+    $produtosPath = './produto/index.php';
+    $relatoriosPath = './relatorios/index.php';
+}
+// Se estamos em qualquer página dentro da pasta produto/
+elseif (strpos($currentScript, '/produto/') !== false) {
+    $homePath = '../home.php';
+    $produtosPath = './index.php';
+    $relatoriosPath = '../relatorios/index.php';
+}
+// Se estamos em qualquer página dentro da pasta filiais/
+elseif (strpos($currentScript, '/filiais/') !== false) {
+    $homePath = '../home.php';
+    $produtosPath = '../produto/index.php';
+    $relatoriosPath = '../relatorios/index.php';
+}
+// Para outras páginas na raiz de views/
+else {
+    $homePath = './home.php';
+    $produtosPath = './produto/index.php';
+    $relatoriosPath = './relatorios/index.php';
+}
 ?>
 
 <nav class="navbar-expand-lg navbar bg-primary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="<?php echo $homePath; ?>">
             <img src="<?php echo $basePath; ?>img/logo-stok-azul-laranja.png" alt="Logo Stok" class="navbar-logo"/>
         </a>
         
@@ -37,16 +67,13 @@ if (strpos($currentScript, '/home.php') !== false) {
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                        <a class="nav-link active" aria-current="page" href="<?php echo $homePath; ?>">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="<?php echo dirname($_SERVER['SCRIPT_NAME']); ?>/produto/index.php">Produtos</a>
+                        <a class="nav-link active" aria-current="page" href="<?php echo $produtosPath; ?>">Produtos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="<?php echo dirname($_SERVER['SCRIPT_NAME']); ?>/show.php">Filiais</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#contato">Relatórios</a>
+                        <a class="nav-link active" aria-current="page" href="<?php echo $relatoriosPath; ?>">Relatórios</a>
                     </li>
                 </ul>
             </div>

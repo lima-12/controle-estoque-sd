@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     </div>
                                 </div>
                                 <div class="produto-preco">R$ ${parseFloat(produto.preco).toLocaleString('pt-BR', {minimumFractionDigits: 2})}</div>
-                                <a href="show.php?id=${produto.id}" class="btn-detalhes">
+                                <a href="./show.php?id=${produto.id}" class="btn-detalhes">
                                     <i class="fas fa-eye me-2"></i>Ver Detalhes
                                 </a>
                             </div>

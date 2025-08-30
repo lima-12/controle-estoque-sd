@@ -24,7 +24,7 @@
         <div class="breadcrump">
             <?php 
                 $breadcrumbs = [
-                    ['label' => 'Home', 'href' => dirname($_SERVER['SCRIPT_NAME']) . '/../home.php'],
+                    ['label' => 'Home', 'href' => '../home.php'],
                     ['label' => 'Produtos']
                 ];
                 include_once(__DIR__ . '/../components/breadcrumb.php');
@@ -40,7 +40,7 @@
         </div>
     </div>
 
-    <a href="cadastroProdutos.php" class="btn-add-product">
+    <a href="./create.php" class="btn-add-product">
         <i class="fas fa-plus"></i> Adicionar Produto
     </a>
 

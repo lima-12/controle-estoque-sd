@@ -5,16 +5,6 @@ body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* ===== Container do Formulário ===== */
-.container-formulario {
-    width: 100%;
-    max-width: 650px;
-    padding: 20px;
 }
 
 /* ===== Cartão Branco do Formulário ===== */
@@ -197,10 +187,6 @@ body {
 
 /* ===== Responsividade para Celular ===== */
 @media (max-width: 576px) {
-    .container-formulario {
-        padding: 15px;
-    }
-
     .cabecalho-formulario {
         padding: 20px;
     }
