@@ -182,6 +182,12 @@ body {
     margin-bottom: 15px;
 }
 
+.produto-quantidade {
+    color: #6c757d;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
 .produto-preco {
     color: #172d68;
     font-size: 1.3rem;
