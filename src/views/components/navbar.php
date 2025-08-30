@@ -16,30 +16,42 @@ if (strpos($currentScript, '/home.php') !== false) {
 $homePath = '';
 $produtosPath = '';
 $relatoriosPath = '';
+$usuariosPath = '';
 
 // Se estamos na página home.php
 if (strpos($currentScript, '/home.php') !== false) {
     $homePath = './home.php';
     $produtosPath = './produto/index.php';
     $relatoriosPath = './relatorios/index.php';
+    $usuariosPath = './usuarios/index.php';
 }
 // Se estamos em qualquer página dentro da pasta produto/
 elseif (strpos($currentScript, '/produto/') !== false) {
     $homePath = '../home.php';
     $produtosPath = './index.php';
     $relatoriosPath = '../relatorios/index.php';
+    $usuariosPath = '../usuarios/index.php';
 }
 // Se estamos em qualquer página dentro da pasta filiais/
 elseif (strpos($currentScript, '/filiais/') !== false) {
     $homePath = '../home.php';
     $produtosPath = '../produto/index.php';
     $relatoriosPath = '../relatorios/index.php';
+    $usuariosPath = '../usuarios/index.php';
+}
+// Se estamos em qualquer página dentro da pasta usuarios/
+elseif (strpos($currentScript, '/usuarios/') !== false) {
+    $homePath = '../home.php';
+    $produtosPath = '../produto/index.php';
+    $relatoriosPath = '../relatorios/index.php';
+    $usuariosPath = './index.php';
 }
 // Para outras páginas na raiz de views/
 else {
     $homePath = './home.php';
     $produtosPath = './produto/index.php';
     $relatoriosPath = './relatorios/index.php';
+    $usuariosPath = './usuarios/index.php';
 }
 ?>
 
@@ -71,6 +83,9 @@ else {
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="<?php echo $produtosPath; ?>">Produtos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="<?php echo $usuariosPath; ?>">Usuários</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="<?php echo $relatoriosPath; ?>">Relatórios</a>
