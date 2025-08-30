@@ -1,7 +1,22 @@
+<?php
+$currentScript = $_SERVER['SCRIPT_NAME'];
+$basePath = '';
+
+if (strpos($currentScript, '/home.php') !== false) {
+    $basePath = '../assets/';
+} elseif (strpos($currentScript, '/produto/') !== false) {
+    $basePath = '../../assets/';
+} elseif (strpos($currentScript, '/filiais/') !== false) {
+    $basePath = '../../assets/';
+} else {
+    $basePath = '../assets/';
+}
+?>
+
 <nav class="navbar-expand-lg navbar bg-primary">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
-        <img src="<?php echo isset($logoPath) ? $logoPath : '../../assets/img/logo-stok-azul-laranja.png'; ?>" alt="Logo Stok" class="navbar-logo" style="height:60px;"/>
+            <img src="<?php echo $basePath; ?>img/logo-stok-azul-laranja.png" alt="Logo Stok" class="navbar-logo"/>
         </a>
         
         <!-- Botão de alternância para abrir o menu offcanvas -->
@@ -14,7 +29,7 @@
             <!-- Cabeçalho do menu offcanvas com título ou logotipo -->
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
-                    <img src="../assets/img/logo-stok-azul-laranja.png" alt="Logo Stok" class="navbar-logo me-2" />
+                    <img src="<?php echo $basePath; ?>img/logo-stok-azul-laranja.png" alt="Logo Stok" class="navbar-logo"/>
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
