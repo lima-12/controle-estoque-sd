@@ -42,19 +42,19 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <h5 class="produto-nome">${produto.nome}</h5>
                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                     <span class="produto-quantidade">Quantidade: ${produto.quantidade}</span>
-                                    <div class="d-flex gap-1">
-                                        <button class="btn btn-sm btn-outline-primary btn-editar" data-produto-id="${produto.id}" title="Editar">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-outline-danger btn-excluir" data-produto-id="${produto.id}" title="Excluir">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>
                                 </div>
                                 <div class="produto-preco">R$ ${parseFloat(produto.preco).toLocaleString('pt-BR', {minimumFractionDigits: 2})}</div>
-                                <a href="./show.php?id=${produto.id}" class="btn-detalhes">
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between mt-auto gap-2">
+                                <a href="./show.php?id=${produto.id}" class="btn btn-stok-primary btn-lg btn-lg-lg btn-detalhes-stok flex-grow-1">
                                     <i class="fas fa-eye me-2"></i>Ver Detalhes
                                 </a>
+                                <button class="btn btn-lg btn-outline-primary btn-editar" data-produto-id="${produto.id}" title="Editar">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                                <button class="btn btn-lg btn-outline-danger btn-excluir" data-produto-id="${produto.id}" title="Excluir">
+                                    <i class="fas fa-trash"></i>
+                                </button>
                             </div>
                         </div>
                     `;

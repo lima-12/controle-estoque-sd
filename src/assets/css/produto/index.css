@@ -129,7 +129,8 @@ body {
 .produto-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-    border-color: rgba(249, 143, 25, 0.5);
+    /* Adicionado: borda laranja no hover para destaque */
+    border-color: #f98f19;
 }
 
 .produto-status {
@@ -138,21 +139,29 @@ body {
     margin-bottom: 15px;
 }
 
+/* Novo estilo para o selo de status */
+.produto-status .badge {
+    border-radius: 50px; /* Borda arredondada para um visual mais suave */
+    padding: 8px 12px; /* Aumenta um pouco o tamanho do selo */
+    font-weight: 600;
+}
+
 .produto-image-container {
-    height: 180px; /* Mantém o contêiner com uma altura fixa */
+    height: 180px;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #f8f9fa;
     border-radius: 8px;
-    margin-bottom: 20px;
-    overflow: hidden; /* Isso é crucial para "recortar" o que excede */
+    /* Alterado: reduz o espaço entre a imagem e o título */
+    margin-bottom: 10px;
+    overflow: hidden;
 }
 
 .produto-image-container img {
-    max-height: 160px; /* Define a altura máxima da imagem */
-    width: 100%; /* Garante que a imagem ocupe a largura total do contêiner */
-    object-fit: contain; /* Ajusta a imagem dentro do contêiner, preservando a proporção e cortando se necessário */
+    max-height: 160px;
+    width: 100%;
+    object-fit: contain;
     border-radius: 6px;
 }
 
@@ -166,8 +175,9 @@ body {
     color: #333;
     font-size: 1.1rem;
     font-weight: 600;
-    margin-bottom: 8px;
     line-height: 1.3;
+    /* Alterado: esta linha empurra os elementos seguintes para baixo, garantindo alinhamento */
+    margin-bottom: auto;
 }
 
 .produto-categoria {
@@ -186,11 +196,14 @@ body {
     color: #6c757d;
     font-size: 0.9rem;
     font-weight: 500;
+    /* Adicionado: adiciona um pequeno espaçamento acima da quantidade */
+    margin-top: 10px;
 }
 
 .produto-preco {
     color: #172d68;
-    font-size: 1.3rem;
+    /* Alterado: aumenta o tamanho da fonte para dar mais destaque */
+    font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 20px;
 }
@@ -234,18 +247,18 @@ body {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    background-color: #0d6efd; /* Azul bootstrap */
+    background-color: #0d6efd;
     color: #fff;
     font-weight: 600;
     padding: 12px 20px;
-    border-radius: 50px; /* Arredondado */
+    border-radius: 50px;
     display: flex;
     align-items: center;
     gap: 10px;
     text-decoration: none;
     box-shadow: 0 6px 20px rgba(0,0,0,0.2);
     transition: all 0.3s ease;
-    z-index: 1000; /* Fica acima de tudo */
+    z-index: 1000;
 }
 
 .btn-add-product i {
@@ -253,11 +266,10 @@ body {
 }
 
 .btn-add-product:hover {
-    background-color: #f98f19; /* Laranja no hover */
+    background-color: #f98f19;
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(0,0,0,0.25);
 }
-
 
 /* Responsividade */
 @media (max-width: 768px) {
