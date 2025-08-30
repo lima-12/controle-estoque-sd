@@ -89,30 +89,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        document.getElementById('form-usuario').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Validação básica
-            const senha = document.getElementById('senha').value;
-            const confirmarSenha = document.getElementById('confirmar_senha').value;
-            
-            if (senha !== confirmarSenha) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Erro',
-                    text: 'As senhas não coincidem!'
-                });
-                return;
-            }
-            
-            // Por enquanto, mostra uma mensagem de funcionalidade em desenvolvimento
-            Swal.fire({
-                icon: 'info',
-                title: 'Funcionalidade em desenvolvimento',
-                text: 'O cadastro de usuários será implementado em breve.'
-            });
-        });
-    </script>
+    <script src="../../assets/js/usuarios/create.js"></script>
 </body>
 </html>

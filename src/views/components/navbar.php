@@ -8,6 +8,8 @@ if (strpos($currentScript, '/home.php') !== false) {
     $basePath = '../../assets/';
 } elseif (strpos($currentScript, '/filiais/') !== false) {
     $basePath = '../../assets/';
+} elseif (strpos($currentScript, '/usuarios/') !== false) {
+    $basePath = '../../assets/';
 } else {
     $basePath = '../assets/';
 }

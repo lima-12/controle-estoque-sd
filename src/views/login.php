@@ -20,7 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($usuarios && count($usuarios) > 0) {
                 $usuario = $usuarios[0];
                 
-                if ($senha == $usuario['senha']) {
+                // Use password_verify for hashed passwords
+                if (password_verify($senha, $usuario['senha'])) {
                     // Armazena usuário na sessão
                     // $_SESSION['usuario'] = $usuario;
                     header('Location: home.php');

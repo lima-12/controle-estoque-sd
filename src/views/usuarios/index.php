@@ -32,6 +32,20 @@
             ?>
         </div>
 
+        <!-- Search and Actions Bar -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="mb-0">Gestão de Usuários</h2>
+            <div class="d-flex">
+                <div class="position-relative me-2" style="width: 250px;">
+                    <input type="text" class="form-control" id="searchInput" placeholder="Buscar usuários..." style="padding-left: 35px;">
+                    <i class="fas fa-search position-absolute" style="left: 12px; top: 50%; transform: translateY(-50%); color: #6c757d;"></i>
+                </div>
+                <button class="btn btn-outline-secondary" onclick="refreshUsers()" title="Atualizar lista">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+        </div>
+
         <!-- Grid de usuários -->
         <div class="usuarios-grid" id="usuarios-grid"></div>
 
