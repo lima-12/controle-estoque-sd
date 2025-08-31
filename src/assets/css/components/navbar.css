@@ -1,8 +1,38 @@
+/* Navbar estilizada */
+.navbar {
+    background: linear-gradient(135deg, #345fd1 0%, #f98f19 100%); /* azul + laranja */
+    padding: 12px 20px;
+    border: none;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Logo dentro da navbar */
 .navbar .navbar-logo {
-    height: 50px; /* ou 40px, depende do visual que você quer */
+    height: 50px; /* ou 40px se quiser menor */
     max-height: 50px;
-    max-width: 150px; /* limite para que não fique enorme em telas largas */
+    max-width: 150px;
     width: auto;
     display: block;
     border-radius: 6px;
+}
+
+/* Links da navbar */
+.navbar .nav-link {
+    color: #fff !important;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover nos links */
+.navbar .nav-link:hover {
+    color: #ffe9d6 !important; /* tom claro puxando pro laranja */
+    transform: translateY(-2px);
+}
+
+/* Nome do usuário (parte direita) */
+.navbar .navbar-text {
+    color: #fff !important;
+    font-weight: 600;
 }

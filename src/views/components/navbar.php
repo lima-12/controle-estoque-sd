@@ -5,7 +5,39 @@ require_once __DIR__ . '/../../config/Config.php';
 $usuarioLogado = Session::getUser();
 ?>
 
-<nav class="navbar navbar-expand-lg bg-primary">
+<style>
+.navbar {
+    background: #345fd1 !important;
+    padding: 12px 20px !important;
+    border-bottom-left-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2) !important;
+}
+
+.navbar .navbar-logo {
+    height: 50px !important;
+    max-height: 50px !important;
+    max-width: 150px !important;
+    width: auto !important;
+    display: block;
+    border-radius: 6px;
+}
+
+.navbar .nav-link {
+    color: #fff !important;
+    font-weight: 500 !important;
+}
+
+.navbar .nav-link:hover {
+    color: #ffe082 !important;
+}
+
+.offcanvas {
+    color: #fff;
+}
+</style>
+
+<nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
         <!-- Logo -->
         <a class="navbar-brand" href="<?= url('home.php') ?>">
