@@ -75,6 +75,12 @@ document.addEventListener('DOMContentLoaded', function() {
                         <a href="./show.php?id=${produto.id}" class="btn btn-stok-primary btn-lg flex-grow-1">
                             <i class="fas fa-eye me-2"></i>Ver Detalhes
                         </a>
+                        <button class="btn btn-lg btn-outline-primary btn-editar" data-produto-id="${produto.id}" title="Editar">
+                            <i class="fas fa-pencil-alt"></i>
+                        </button>
+                        <button class="btn btn-lg btn-outline-danger btn-excluir" data-produto-id="${produto.id}" title="Excluir">
+                            <i class="fas fa-trash"></i>
+                        </button>
                     </div>
                 </div>
             `;

@@ -60,7 +60,7 @@ body {
 /* --- ESTILO DA BARRA DE PESQUISA --- */
 .search-form-container {
     width: 100%;
-    max-width: 500px; /* Aumenta a largura máxima */
+    max-width: 1200px; /* Aumenta a largura máxima */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Adiciona sombra */
     border-radius: 8px; /* Adiciona bordas arredondadas */
     padding: 10px;
