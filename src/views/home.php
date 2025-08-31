@@ -1,12 +1,10 @@
 <?php
-	// No futuro, aqui você colocaria a lógica de verificação de sessão.
-	// session_start();
-	// if (!isset($_SESSION['usuario'])) {
-	//     header('Location: login.php');
-	//     exit;
-	// }
-
+	require_once __DIR__ . '/../config/Session.php';
 	require_once __DIR__ . '/../Model/Produto.php';
+	
+	// Verifica se o usuário está logado
+	Session::requireLogin();
+	
 	use App\model\Produto;
 
 	$produtoModel = new Produto();

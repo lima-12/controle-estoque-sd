@@ -1,9 +1,14 @@
 <?php
-// session_start();
-
+require_once __DIR__ . '/../config/Session.php';
 require_once __DIR__ . '/../Model/Usuario.php';
 
 use App\model\Usuario;
+
+// Se já estiver logado, redireciona para home
+if (Session::isLoggedIn()) {
+    header('Location: home.php');
+    exit;
+}
 
 $erroLogin = '';
 
@@ -15,15 +20,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $usuarioModel = new Usuario();
             $usuarios = $usuarioModel->find($email);
-            // echo'<pre>'; print_r($usuarios); echo'</pre>'; exit;
             
             if ($usuarios && count($usuarios) > 0) {
                 $usuario = $usuarios[0];
                 
                 // Use password_verify for hashed passwords
-                if (password_verify($senha, $usuario['senha'])) {
+                if ($senha == $usuario['senha']) {
                     // Armazena usuário na sessão
-                    // $_SESSION['usuario'] = $usuario;
+                    Session::setUser($usuario);
                     header('Location: home.php');
                     exit;
                 } else {

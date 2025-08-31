@@ -1,4 +1,9 @@
 <?php
+require_once __DIR__ . '/../../config/Session.php';
+
+// Verifica se o usuário está logado
+Session::requireLogin();
+
 // Caminhos dos arquivos
 $jsonPathProdutos = 'produtos.json';
 $jsonPathCategorias = 'categorias.json';

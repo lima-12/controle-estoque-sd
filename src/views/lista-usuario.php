@@ -1,29 +1,11 @@
 <?php
+require_once __DIR__ . '/../config/Session.php';
 
-session_start();
+// Verifica se o usuário está logado
+Session::requireLogin();
 
-// use App\model\Usuario;
-// $sql = new Usuario();
-
-// if(isset($_SESSION['logado']) && $_SESSION['logado'] == true) {
-
-// 	$userAtual = $sql->find($_SESSION['email']);
-// 	// echo'<pre>'; print_r($userAtual); echo'</pre>'; exit;	
-
-// }
-
-// if (isset($_SESSION['visitante']) || $_SESSION['visitante'] == true) {
-	$userAtual[0]['nome'] = 'Visitante';
-// }
-
-// if (!isset($_SESSION['logado']) || 
-// 	$_SESSION['logado'] !== true || 
-// 	!isset($_SESSION['visitante']) || 
-// 	$_SESSION['visitante'] !== true) {
-
-//     header('Location: ../../index.php');
-//     exit(); 
-// }
+// Obtém o usuário atual da sessão
+$userAtual = Session::getUser();
 
 
 
@@ -91,7 +73,7 @@ $aUsuarios = [
 		<?php include_once "components/message.php" ?>
 		
 
-		<h1 class="text-center"> Bem Vindo <?=$userAtual[0]['nome']?> </h1>
+		<h1 class="text-center"> Bem Vindo <?=$userAtual['nome']?> </h1>
 
 		<div class="m-5">
 			<table class="table table-hover" >

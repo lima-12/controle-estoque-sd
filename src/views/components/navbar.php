@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/../../config/Session.php';
+
 $currentScript = $_SERVER['SCRIPT_NAME'];
 $basePath = '';
 
@@ -13,6 +15,9 @@ if (strpos($currentScript, '/home.php') !== false) {
 } else {
     $basePath = '../assets/';
 }
+
+// Obtém o usuário logado
+$usuarioLogado = Session::getUser();
 
 // Calcula os caminhos corretos para os links baseado na página atual
 $homePath = '';
@@ -68,6 +73,20 @@ else {
             <span class="navbar-toggler-icon"></span>
         </button>
         
+        <!-- Menu desktop -->
+        <!-- <div class="navbar-nav ms-auto">
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-user me-1"></i><?= htmlspecialchars($usuarioLogado['nome']) ?>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="../../controllers/sair.php">
+                        <i class="fas fa-sign-out-alt me-2"></i>Sair
+                    </a></li>
+                </ul>
+            </div>
+        </div> -->
+        
         <!-- Menu offcanvas que aparece em telas menores -->
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
             <!-- Cabeçalho do menu offcanvas com título ou logotipo -->
@@ -91,6 +110,18 @@ else {
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="<?php echo $relatoriosPath; ?>">Relatórios</a>
+                    </li>
+                    
+                    <!-- Dropdown do usuário -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user me-1"></i><?= htmlspecialchars($usuarioLogado['nome']) ?>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="../controllers/sair.php">
+                                <i class="fas fa-sign-out-alt me-2"></i>Sair
+                            </a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>

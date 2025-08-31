@@ -1,6 +1,5 @@
 <?php
-	session_start();
-	session_destroy();
-	header('Location: ../../index.php');
-	exit;
+	// echo "chegou"; exit;
+	require_once __DIR__ . '/../config/Session.php';
+	Session::logout();
 ?>

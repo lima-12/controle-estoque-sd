@@ -1,4 +1,12 @@
 <?php
+require_once __DIR__ . '/../config/Session.php';
+
+// Se já estiver logado, redireciona para home
+if (Session::isLoggedIn()) {
+    header('Location: home.php');
+    exit;
+}
+
 $usuariosPath = 'usuarios.json';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
