@@ -41,12 +41,12 @@
 <body style="background-color: #f8f9fa">
 	<?php include_once(__DIR__ . '/components/navbar.php'); ?>
 
-	<?php 
+	<!-- <?php 
 		$breadcrumbs = [
 			['label' => 'Home']
 		];
 		include_once(__DIR__ . '/components/breadcrumb.php');
-	?>
+	?> -->
 	
 	<div class="container mt-4">
 		<h2 class="mb-4">Dashboard de Controle</h2>

@@ -1,9 +1,22 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('.produtos-navbar .d-flex');
-    const input = form ? form.querySelector('input[type="search"]') : null;
+    const searchForm = document.querySelector('.d-flex.form-inline');
+    const searchInput = document.getElementById('searchInput');
     const produtosGrid = document.getElementById('produtos-grid');
     const noProducts = document.getElementById('no-products');
 
+    setupEventListeners();
+    buscarProdutos();
+
+    function setupEventListeners() {
+        if (searchForm) {
+            searchForm.addEventListener('submit', function(e) {
+                e.preventDefault(); // Impede o envio do formulário padrão
+                const searchTerm = searchInput.value.trim();
+                buscarProdutos(searchTerm);
+            });
+        }
+    }
+    
     function buscarProdutos(busca = '') {
         fetch(`../../controllers/produtoController.php?busca=${encodeURIComponent(busca)}`)
             .then(response => response.json())
@@ -74,6 +87,15 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 
+    // Função para atualizar a lista de produtos (chamada pelo botão de refresh)
+    window.refreshProducts = function() {
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            searchInput.value = '';
+        }
+        buscarProdutos();
+    };
+
     function adicionarEventListeners() {
         // Event listeners para botões de editar
         document.querySelectorAll('.btn-editar').forEach(btn => {
@@ -115,22 +137,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
             });
-        });
-    }
-
-    buscarProdutos();
-
-    if (form && input) {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            buscarProdutos(input.value);
-        });
-
-        input.addEventListener('input', function() {
-            const busca = this.value.trim();
-            if (busca.length >= 2 || busca.length === 0) {
-                buscarProdutos(busca);
-            }
         });
     }
 });

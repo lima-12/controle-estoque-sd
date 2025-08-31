@@ -36,6 +36,14 @@
             ?>
         </div>
 
+        <!-- Seção do título e da barra de pesquisa -->
+        <div class="d-flex justify-content-center mb-4">
+            <form class="d-flex search-form-container">
+                <input class="form-control me-2" type="search" id="searchInput" placeholder="Pesquisar" aria-label="Pesquisar">
+                <button class="btn btn-stok-primary" type="submit">Pesquisar</button>
+            </form>
+        </div>
+
         <!-- Grid de produtos -->
         <div class="produtos-grid" id="produtos-grid"></div>
 
