@@ -3,10 +3,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const uploadArea = document.getElementById('area-upload');
     const fileInput = document.getElementById('inputArquivo');
     const form = document.getElementById('formProduto');
-    const btnCadastrar = document.getElementById('btnCadastrar');
+    const btnAtualizar = document.getElementById('btnAtualizar');
     const btnText = document.getElementById('btnText');
     const btnLoading = document.getElementById('btnLoading');
     const alertMessage = document.getElementById('alertMessage');
+    
+    // Obtém o ID do produto da URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const produtoId = urlParams.get('id');
 
     // Configuração do drag and drop
     if (uploadArea && fileInput) {
@@ -64,16 +68,10 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Validação básica
             const nome = form.querySelector('input[name="nome"]').value.trim();
-            const quantidade = parseInt(form.querySelector('input[name="quantidade"]').value) || 0;
             const preco = parseFloat(form.querySelector('input[name="preco"]').value) || 0;
 
             if (!nome) {
                 showAlert('Por favor, preencha o nome do produto.', 'danger');
-                return;
-            }
-
-            if (quantidade < 0) {
-                showAlert('A quantidade não pode ser negativa.', 'danger');
                 return;
             }
 
@@ -83,38 +81,64 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             // Desabilita o botão e mostra o loading
-            btnCadastrar.disabled = true;
+            btnAtualizar.disabled = true;
             btnText.classList.add('d-none');
             btnLoading.classList.remove('d-none');
 
             try {
                 const formData = new FormData(form);
                 
-                const response = await fetch('../../controllers/produtoController.php', {
-                    method: 'POST',
+                // Adiciona o ID do produto ao formData
+                formData.append('id', produtoId);
+                
+                // Se não foi selecionada uma nova imagem, remove o campo de imagem
+                if (fileInput.files.length === 0) {
+                    formData.delete('imagem');
+                } else {
+                    // Se uma nova imagem foi selecionada, adiciona ao formData
+                    formData.append('imagem', fileInput.files[0]);
+                }
+                
+                const response = await fetch(form.action, {
+                    method: form.method,
                     body: formData
                 });
 
                 const result = await response.json();
 
                 if (result.success) {
-                    showAlert('Produto cadastrado com sucesso!', 'success');
-                    form.reset();
-                    updateUploadText('Selecione uma imagem');
+                    showAlert('Produto atualizado com sucesso!', 'success');
                     
-                    // Redireciona para a lista de produtos após 1.5 segundos
-                    setTimeout(() => {
-                        window.location.href = './index.php';
-                    }, 1500);
+                    // Atualiza a visualização da imagem se uma nova foi enviada
+                    if (fileInput.files.length > 0) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            const imgPreview = document.querySelector('.img-thumbnail');
+                            if (imgPreview) {
+                                imgPreview.src = e.target.result;
+                            } else {
+                                // Se não existir a pré-visualização, recarrega a página para mostrar a nova imagem
+                                window.location.reload();
+                            }
+                        };
+                        reader.readAsDataURL(fileInput.files[0]);
+                    }
+                    
+                    // Atualiza o texto do botão de upload
+                    updateUploadText('Alterar imagem');
+                    
+                    // Reseta o input de arquivo
+                    fileInput.value = '';
+                    
                 } else {
-                    throw new Error(result.message || 'Erro ao cadastrar o produto');
+                    throw new Error(result.message || 'Erro ao atualizar o produto');
                 }
             } catch (error) {
                 console.error('Erro:', error);
                 showAlert(error.message || 'Ocorreu um erro ao processar a requisição', 'danger');
             } finally {
                 // Reabilita o botão e esconde o loading
-                btnCadastrar.disabled = false;
+                btnAtualizar.disabled = false;
                 btnText.classList.remove('d-none');
                 btnLoading.classList.add('d-none');
             }

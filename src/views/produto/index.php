@@ -5,6 +5,13 @@
     Session::requireLogin();
     
     $title = 'Lista Produtos';
+    
+    // Função para obter a URL base
+    function base_url($path = '') {
+        $base_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
+        $script_name = dirname($_SERVER['SCRIPT_NAME']);
+        return rtrim($base_url . $script_name, '/') . '/' . ltrim($path, '/');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -57,9 +64,16 @@
         <i class="fas fa-plus"></i> Adicionar Produto
     </a>
 
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Define a URL base para uso no JavaScript
+        const baseUrl = '<?php 
+            $base = rtrim(dirname(dirname($_SERVER['SCRIPT_NAME'])), '/');
+            echo $base;
+        ?>';
+        console.log('URL base definida como:', baseUrl);
+    </script>
     <script src="../../assets/js/produto/index.js"></script>
 </body>
 </html>

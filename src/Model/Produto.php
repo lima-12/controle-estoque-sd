@@ -4,6 +4,7 @@ namespace App\model;
 
 use PDO;
 use PDOException;
+use Exception;
 use App\config\Conexao;
 
 require_once __DIR__ . '/../config/Conexao.php';
@@ -126,4 +127,208 @@ class Produto {
         }
     }
 
+    public function criarProduto($dados) {
+        try {
+            $this->pdo->beginTransaction();
+            
+            // 1. Salva a imagem se houver
+            $nomeImagem = null;
+            if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
+                $nomeImagem = $this->processarUploadImagem($_FILES['imagem']);
+            }
+            
+            // 2. Insere o produto
+            $sql = "INSERT INTO produtos (nome, preco, imagem) VALUES (:nome, :preco, :imagem)";
+            $stmt = $this->pdo->prepare($sql);
+            
+            $stmt->execute([
+                ':nome' => $dados['nome'],
+                ':preco' => $dados['preco'],
+                ':imagem' => $nomeImagem
+            ]);
+            
+            $produtoId = $this->pdo->lastInsertId();
+            
+            $this->pdo->commit();
+            return ['success' => true, 'id' => $produtoId];
+            
+        } catch (Exception $e) {
+            $this->pdo->rollBack();
+            // Remove a imagem se o upload foi feito mas ocorreu um erro
+            if (isset($caminhoImagem) && file_exists($caminhoImagem)) {
+                unlink($caminhoImagem);
+            }
+            return ['success' => false, 'error' => $e->getMessage()];
+        }
+    }
+    
+    public function atualizarProduto($dados, $arquivoImagem = null) {
+        error_log('Iniciando atualização do produto. Dados: ' . print_r($dados, true));
+        error_log('Arquivo de imagem: ' . print_r($arquivoImagem, true));
+        
+        try {
+            $this->pdo->beginTransaction();
+            
+            // 1. Processa o upload da nova imagem, se fornecida
+            $nomeImagem = null;
+            $caminhoImagem = null;
+            
+            if ($arquivoImagem && $arquivoImagem['error'] === UPLOAD_ERR_OK) {
+                // Remove a imagem antiga, se existir
+                if (!empty($dados['imagem_atual'])) {
+                    $caminhoImagemAntiga = __DIR__ . '/../../assets/img/produtos/' . $dados['imagem_atual'];
+                    if (file_exists($caminhoImagemAntiga)) {
+                        unlink($caminhoImagemAntiga);
+                    }
+                }
+                
+                // Faz upload da nova imagem
+                $nomeImagem = $this->processarUploadImagem($arquivoImagem);
+            } elseif (!empty($dados['imagem_atual'])) {
+                // Mantém a imagem atual se não for fornecida uma nova
+                $nomeImagem = $dados['imagem_atual'];
+            }
+            
+            // 2. Atualiza os dados do produto
+            $sql = "UPDATE produtos SET 
+                    nome = :nome, 
+                    preco = :preco" . 
+                    ($nomeImagem !== null ? ", imagem = :imagem" : "") . 
+                    " WHERE id = :id";
+                    
+            error_log('SQL de atualização: ' . $sql);
+                    
+            $stmt = $this->pdo->prepare($sql);
+            
+            $params = [
+                ':id' => $dados['id'],
+                ':nome' => $dados['nome'],
+                ':preco' => $dados['preco']
+            ];
+            
+            if ($nomeImagem !== null) {
+                $params[':imagem'] = $nomeImagem;
+            }
+            
+            $result = $stmt->execute($params);
+            $rowCount = $stmt->rowCount();
+            
+            $this->pdo->commit();
+            
+            error_log('Atualização concluída. Linhas afetadas: ' . $rowCount);
+            return ['success' => true, 'id' => $dados['id']];
+            
+        } catch (Exception $e) {
+            $this->pdo->rollBack();
+            // Remove a imagem se o upload foi feito mas ocorreu um erro
+            if (isset($caminhoImagem) && file_exists($caminhoImagem)) {
+                unlink($caminhoImagem);
+            }
+            return ['success' => false, 'error' => $e->getMessage()];
+        }
+    }
+    
+    /**
+     * Processa o upload de uma imagem e retorna o nome do arquivo
+     */
+    private function processarUploadImagem($arquivo) {
+        $extensao = pathinfo($arquivo['name'], PATHINFO_EXTENSION);
+        $nomeImagem = uniqid('produto_') . '.' . $extensao;
+        $caminhoImagem = __DIR__ . '/../../assets/img/produtos/' . $nomeImagem;
+        
+        if (!is_dir(dirname($caminhoImagem))) {
+            mkdir(dirname($caminhoImagem), 0755, true);
+        }
+        
+        if (!move_uploaded_file($arquivo['tmp_name'], $caminhoImagem)) {
+            throw new Exception('Falha ao fazer upload da imagem');
+        }
+        
+        return $nomeImagem;
+    }
+    
+    /**
+     * Exclui um produto do banco de dados
+     * 
+     * @param int $id ID do produto a ser excluído
+     * @return array Resultado da operação
+     */
+    public function excluirProduto($id) {
+        try {
+            error_log('Iniciando exclusão do produto ID: ' . $id);
+            $this->pdo->beginTransaction();
+            
+            // 1. Primeiro, verifica se o produto existe
+            $sqlVerificaProduto = "SELECT id FROM produtos WHERE id = :id";
+            $stmtVerificaProduto = $this->pdo->prepare($sqlVerificaProduto);
+            $stmtVerificaProduto->execute([':id' => $id]);
+            
+            if ($stmtVerificaProduto->rowCount() === 0) {
+                $erro = 'Produto não encontrado';
+                error_log($erro);
+                return [
+                    'success' => false,
+                    'error' => $erro
+                ];
+            }
+            
+            // 2. Verifica se existem produtos em estoque
+            $sqlVerificaEstoque = "SELECT COUNT(*) as total FROM produto_filial WHERE produto_id = :produto_id AND quantidade > 0";
+            error_log('SQL verificação de estoque: ' . $sqlVerificaEstoque . ' (ID: ' . $id . ')');
+            
+            $stmtVerificaEstoque = $this->pdo->prepare($sqlVerificaEstoque);
+            $stmtVerificaEstoque->execute([':produto_id' => $id]);
+            $resultado = $stmtVerificaEstoque->fetch(PDO::FETCH_ASSOC);
+            
+            error_log('Resultado da verificação de estoque: ' . print_r($resultado, true));
+            
+            // Se houver produtos em estoque, não permite a exclusão
+            if ($resultado && $resultado['total'] > 0) {
+                $erro = 'Não é possível excluir o produto pois existem itens em estoque.';
+                error_log($erro);
+                return [
+                    'success' => false,
+                    'error' => $erro
+                ];
+            }
+            
+            // 3. Primeiro, remove as relações na tabela produto_filial
+            $sqlDeleteRelacionamentos = "DELETE FROM produto_filial WHERE produto_id = :produto_id";
+            $stmtDeleteRelacionamentos = $this->pdo->prepare($sqlDeleteRelacionamentos);
+            $stmtDeleteRelacionamentos->execute([':produto_id' => $id]);
+            error_log('Relacionamentos removidos: ' . $stmtDeleteRelacionamentos->rowCount());
+            
+            // 4. Agora remove o produto
+            $sqlDeleteProduto = "DELETE FROM produtos WHERE id = :id";
+            error_log('SQL de exclusão: ' . $sqlDeleteProduto . ' (ID: ' . $id . ')');
+            
+            $stmtProduto = $this->pdo->prepare($sqlDeleteProduto);
+            $resultadoDelete = $stmtProduto->execute([':id' => $id]);
+            $linhasAfetadas = $stmtProduto->rowCount();
+            
+            error_log('Resultado da exclusão: ' . ($resultadoDelete ? 'sucesso' : 'falha'));
+            error_log('Linhas afetadas: ' . $linhasAfetadas);
+            
+            if ($linhasAfetadas === 0) {
+                throw new Exception('Nenhum produto foi excluído. Verifique se o ID está correto.');
+            }
+            
+            $this->pdo->commit();
+            
+            $mensagem = 'Produto excluído com sucesso!';
+            error_log($mensagem);
+            
+            return [
+                'success' => true,
+                'message' => $mensagem
+            ];
+            
+        } catch (Exception $e) {
+            $this->pdo->rollBack();
+            return [
+                'success' => false,
+                'error' => 'Erro ao excluir o produto: ' . $e->getMessage()
+            ];
+        }
+    }
 }

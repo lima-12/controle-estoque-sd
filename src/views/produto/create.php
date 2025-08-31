@@ -84,11 +84,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                     <!-- Corpo com os campos do formulário -->
                     <div class="corpo-formulario">
-                        <form method="post">
+                        <form id="formProduto" enctype="multipart/form-data">
                             <!-- Upload de imagem do produto (opcional) -->
                             <div class="rotulo-campo">Imagem do Produto (opcional)</div>
                             <label class="area-upload" id="area-upload">
-                                <input type="file" id="inputArquivo" name="imagemProduto" accept="image/*">
+                                <input type="file" id="inputArquivo" name="imagem" accept="image/*">
                                 <div class="conteudo-upload">
                                     <i class="fas fa-image icone-upload"></i>
                                     <p class="texto-upload">Selecione uma imagem</p>
@@ -133,10 +133,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             <hr class="linha-divisoria">
 
                             <!-- Botão de envio do formulário -->
-                            <button type="submit" class="btn botao-enviar">
+                            <button type="submit" class="btn botao-enviar" id="btnCadastrar">
                                 <i class="fas fa-plus icone-botao"></i>
-                                Cadastrar
+                                <span id="btnText">Cadastrar</span>
+                                <span id="btnLoading" class="d-none">
+                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    Salvando...
+                                </span>
                             </button>
+                            <div id="alertMessage" class="mt-3"></div>
                         </form>
                     </div>
                 </div>

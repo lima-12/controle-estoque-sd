@@ -85,9 +85,65 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             `;
         });
+        
+        // Adiciona os event listeners após popular a grade
+        adicionarEventListeners();
     }
 
-    // Carrega todos os produtos ao abrir a página
+    function adicionarEventListeners() {
+        console.log('Configurando event listeners...');
+        // Event listeners para botões de editar
+        document.querySelectorAll('.btn-editar').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const produtoId = this.getAttribute('data-produto-id');
+                console.log('Editar produto ID:', produtoId);
+                
+                // Obtém o caminho base da URL atual
+                const currentPath = window.location.pathname;
+                const basePath = currentPath.substring(0, currentPath.lastIndexOf('/'));
+                
+                // Monta a URL de redirecionamento
+                const url = `${basePath}/update.php?id=${produtoId}`;
+                console.log('Redirecionando para:', url);
+                
+                // Redireciona para a página de edição com o ID do produto
+                window.location.href = url;
+            });
+        });
+
+        // Event listeners para botões de excluir
+        document.querySelectorAll('.btn-excluir').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const produtoId = this.getAttribute('data-produto-id');
+                console.log('Excluir produto ID:', produtoId);
+                
+                // SweetAlert para confirmar exclusão
+                Swal.fire({
+                    title: 'Tem certeza?',
+                    text: "Você não poderá reverter esta ação!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#dc3545',
+                    cancelButtonColor: '#6c757d',
+                    confirmButtonText: 'Sim, excluir!',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // TODO: Implementar requisição AJAX para exclusão
+                        console.log('Produto será excluído:', produtoId);
+                        
+                        // Simulação de resposta do servidor
+                        Swal.fire(
+                            'Excluído!',
+                            'Produto foi excluído com sucesso.',
+                            'success'
+                        );
+                    }
+                });
+            });
+        });
+    }
+
     buscarProdutos();
 
     // Evento da barra de pesquisa
@@ -96,4 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const termo = searchInput.value.trim();
         buscarProdutos(termo);
     });
+    
+    // Adiciona os event listeners iniciais
+    adicionarEventListeners();
 });
