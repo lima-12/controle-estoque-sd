@@ -22,6 +22,9 @@
     <title>Stok - Produtos</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/css/produto/index.css" />
     <link rel="stylesheet" href="../../assets/css/components/navbar.css">
     <link rel="stylesheet" href="../../assets/css/botao.css">
@@ -33,7 +36,7 @@
 
     <div class="produtos-container px-4">
         <!-- Breadcrumb alinhado ao grid -->
-        <div class="breadcrump">
+        <div class="breadcrump mb-3">
             <?php 
                 $breadcrumbs = [
                     ['label' => 'Home', 'href' => '../home.php'],
@@ -43,8 +46,8 @@
             ?>
         </div>
 
-        <!-- Seção do título e da barra de pesquisa -->
-        <div class="d-flex justify-content-center mb-4">
+        <!-- Seção da barra de pesquisa -->
+        <div class="d-flex justify-content-center mb-5">
             <form class="d-flex search-form-container">
                 <input class="form-control me-2" type="search" id="searchInput" placeholder="Pesquisar" aria-label="Pesquisar">
                 <button class="btn btn-stok-primary" type="submit">Pesquisar</button>
@@ -52,7 +55,7 @@
         </div>
 
         <!-- Grid de produtos -->
-        <div class="produtos-grid" id="produtos-grid"></div>
+        <div class="produtos-grid my-4" id="produtos-grid"></div>
 
         <div class="no-products d-none" id="no-products">
             <i class="fas fa-box-open"></i>
