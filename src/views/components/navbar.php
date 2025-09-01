@@ -31,7 +31,7 @@ $usuarioLogado = Session::getUser();
                     <li class="nav-item"><a class="nav-link" href="<?= url('home.php') ?>">Início</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= url('produto/index.php') ?>">Produtos</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= url('usuarios/index.php') ?>">Usuários</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= url('relatorios/index.php') ?>">Relatórios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= url('filiais/index.php') ?>">Filiais</a></li>
                     
                     <!-- Dropdown usuário com botão -->
                     <li class="nav-item dropdown">

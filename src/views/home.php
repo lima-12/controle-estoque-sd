@@ -28,33 +28,21 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
-        <script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
-        <script src="https://cdn.datatables.net/2.3.2/js/dataTables.bootstrap5.js"></script>
-
         <link rel="stylesheet" href="../assets/css/style.css">
         <link rel="stylesheet" href="../assets/css/components/navbar.css">
+        <!-- NOVO: Link para o CSS da página Home -->
+        <link rel="stylesheet" href="../assets/css/home.css">
 
         <title> Dashboard </title>
-        <!-- <style>
-            body { padding-top: 60px; }
-        </style> -->
     </head>
 
 <body style="background-color: #f8f9fa">
 	<?php include_once(__DIR__ . '/components/navbar.php'); ?>
-
-	<!-- <?php 
-		$breadcrumbs = [
-			['label' => 'Home']
-		];
-		include_once(__DIR__ . '/components/breadcrumb.php');
-	?> -->
 	
 	<div class="container mt-4">
 		<h2 class="mb-4">Dashboard de Controle</h2>
 
+		<!-- Cards de Resumo -->
 		<div class="row">
 			<div class="col-6 col-md-3 mb-4">
 				<div class="card text-white bg-primary h-100">
@@ -90,6 +78,27 @@
 			</div>
 		</div>
 
+        <!-- NOVO: Linha para o Gráfico de Pizza -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="alert alert-info text-center" id="noDataMessage" style="display: none;">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Nenhum produto encontrado para gerar o gráfico.
+                        </div>
+                        <div class="d-flex flex-column justify-content-center align-items-center">
+                            <div class="chart-container">
+                                <canvas id="estoqueChart"></canvas>
+                            </div>
+                            <div id="custom-legend" class="chart-legend mt-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+		<!-- Linha para as Tabelas -->
 		<div class="row g-4">
 			<div class="col-12 col-lg-6" id="produtos-estoque-critico">
 				<div class="card h-100">
@@ -141,25 +150,19 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
 
-
-
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.3.2/js/dataTables.bootstrap5.js"></script>
+    
+    <!-- Scripts do Gráfico -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    
+    <!-- NOVO: Link para o JS da página Home -->
+    <script src="../assets/js/home.js"></script>
 </body>
-
-<script>
-	document.addEventListener('DOMContentLoaded', function () {
-		if (window.DataTable) {
-			new DataTable('#tabela-estoque-critico', {
-				paging: true,
-				pageLength: 5,
-				lengthChange: false,
-				searching: true,
-				info: true,
-				order: [],
-				responsive: true
-			});
-		}
-	});
-</script>
+</html>
