@@ -30,6 +30,7 @@ $usuarioLogado = Session::getUser();
                 <ul class="navbar-nav ms-auto pe-3">
                     <li class="nav-item"><a class="nav-link" href="<?= url('home.php') ?>">Início</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= url('produto/index.php') ?>">Produtos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= url('entrada-produto/index.php') ?>"><i class="fas fa-arrow-down me-1"></i>Entrada de Produtos</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= url('usuarios/index.php') ?>">Usuários</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= url('filiais/index.php') ?>">Filiais</a></li>
                     

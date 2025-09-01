@@ -30,7 +30,6 @@
 
         <link rel="stylesheet" href="../assets/css/style.css">
         <link rel="stylesheet" href="../assets/css/components/navbar.css">
-        <!-- NOVO: Link para o CSS da página Home -->
         <link rel="stylesheet" href="../assets/css/home.css">
 
         <title> Dashboard </title>
@@ -79,24 +78,7 @@
 		</div>
 
         <!-- NOVO: Linha para o Gráfico de Pizza -->
-        <div class="row mb-4">
-            <div class="col-12">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="alert alert-info text-center" id="noDataMessage" style="display: none;">
-                            <i class="fas fa-info-circle me-2"></i>
-                            Nenhum produto encontrado para gerar o gráfico.
-                        </div>
-                        <div class="d-flex flex-column justify-content-center align-items-center">
-                            <div class="chart-container">
-                                <canvas id="estoqueChart"></canvas>
-                            </div>
-                            <div id="custom-legend" class="chart-legend mt-3"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
 
 		<!-- Linha para as Tabelas -->
 		<div class="row g-4">
@@ -145,7 +127,16 @@
 				<div class="card h-100">
 					<div class="card-header">Outra Informação</div>
 					<div class="card-body">
-						<p class="text-muted mb-0">Conteúdo a definir. Este bloco ficará ao lado da tabela no desktop e abaixo no mobile.</p>
+						<div class="alert alert-info text-center" id="noDataMessage" style="display: none;">
+							<i class="fas fa-info-circle me-2"></i>
+							Nenhum produto encontrado para gerar o gráfico.
+						</div>
+						<div class="d-flex flex-column justify-content-center align-items-center">
+							<div class="chart-container">
+								<canvas id="estoqueChart"></canvas>
+							</div>
+							<div id="custom-legend" class="chart-legend mt-3"></div>
+						</div>
 					</div>
 				</div>
 			</div>

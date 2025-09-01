@@ -20,6 +20,81 @@ class Produto {
         $this->pdo = $conexao->pdo;
     }
 
+    /**
+     * Registra a entrada de um produto no estoque de uma filial
+     * 
+     * @param int $produtoId ID do produto
+     * @param int $filialId ID da filial
+     * @param int $quantidade Quantidade a ser adicionada (deve ser maior que zero)
+     * @return array Resultado da operação
+     */
+    public function registrarEntrada($produtoId, $filialId, $quantidade)
+    {
+        try {
+            // Validações
+            if ($quantidade <= 0) {
+                throw new Exception('A quantidade deve ser maior que zero');
+            }
+
+            // Inicia transação
+            $this->pdo->beginTransaction();
+
+            // Verifica se já existe um registro para este produto e filial
+            $stmt = $this->pdo->prepare(
+                'SELECT id, quantidade FROM produto_filial 
+                 WHERE produto_id = :produto_id AND filial_id = :filial_id'
+            );
+            $stmt->execute([
+                ':produto_id' => $produtoId,
+                ':filial_id' => $filialId
+            ]);
+            
+            $registro = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($registro) {
+                // Atualiza a quantidade existente
+                $novaQuantidade = $registro['quantidade'] + $quantidade;
+                $stmt = $this->pdo->prepare(
+                    'UPDATE produto_filial 
+                     SET quantidade = :quantidade 
+                     WHERE id = :id'
+                );
+                $stmt->execute([
+                    ':quantidade' => $novaQuantidade,
+                    ':id' => $registro['id']
+                ]);
+            } else {
+                // Cria um novo registro
+                $stmt = $this->pdo->prepare(
+                    'INSERT INTO produto_filial (produto_id, filial_id, quantidade) 
+                     VALUES (:produto_id, :filial_id, :quantidade)'
+                );
+                $stmt->execute([
+                    ':produto_id' => $produtoId,
+                    ':filial_id' => $filialId,
+                    ':quantidade' => $quantidade
+                ]);
+            }
+
+            // Registra o movimento no histórico (se houver uma tabela para isso)
+            // $this->registrarMovimento($produtoId, $filialId, $quantidade, 'entrada');
+
+            $this->pdo->commit();
+            
+            return [
+                'success' => true,
+                'message' => 'Entrada de produto registrada com sucesso!'
+            ];
+            
+        } catch (Exception $e) {
+            $this->pdo->rollBack();
+            return [
+                'success' => false,
+                'message' => 'Erro ao registrar entrada de produto: ' . $e->getMessage()
+            ];
+        }
+    }
+
 
     public function getAll($busca = null) {
         try {

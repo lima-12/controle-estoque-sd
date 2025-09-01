@@ -24,15 +24,6 @@
 </head>
 
 <body>
-    <style>
-        body{
-            background: linear-gradient(135deg, #8bbcf0 0%, #ffffff 35%, #ffb877 100%);
-            min-height: 100vh;
-            font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-    </style>
     <?php include_once(__DIR__ . '/../components/navbar.php'); ?>
 
     <div class="usuarios-container px-4">
