@@ -98,3 +98,37 @@
     border-radius: 6px;
     padding: 0.5rem 0;
 }
+
+/* Mobile menu styles */
+.offcanvas {
+    background-color: #345fd1 !important;
+}
+
+.offcanvas-header .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+.offcanvas-body .nav-link {
+    color: #fff !important;
+    /* padding: 10px 20px !important; */
+}
+
+.offcanvas-body .nav-link:hover {
+    color: #ffe9d6 !important;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.offcanvas-body .dropdown-menu {
+    background-color: #2a4fb8;
+    border: none;
+    margin-left: 20px;
+}
+
+.offcanvas-body .dropdown-item {
+    color: #fff !important;
+}
+
+.offcanvas-body .dropdown-item:hover {
+    color: #ffe9d6 !important;
+    background-color: rgba(255, 255, 255, 0.1);
+}
