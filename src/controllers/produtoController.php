@@ -14,6 +14,12 @@ if (isset($_GET['busca'])) {
     exit;
 }
 
+// Rota para obter todos os produtos (para relatórios)
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'getAllProducts') {
+    echo json_encode($produtoModel->getAll());
+    exit;
+}
+
 // Rota para obter detalhes de um produto específico (apenas para GET)
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id']) && !isset($_GET['_method'])) {
     $id = (int)$_GET['id'];

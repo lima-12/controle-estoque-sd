@@ -27,7 +27,6 @@
     <?php include_once(__DIR__ . '/../components/navbar.php'); ?>
 
     <div class="container mt-4">
-        <!-- Breadcrumb -->
         <div class="breadcrump mb-4">
             <?php 
                 $breadcrumbs = [
@@ -45,45 +44,16 @@
                         <h4><i class="fas fa-chart-bar me-2"></i>Relatórios</h4>
                     </div>
                     <div class="card-body">
-                        <div class="alert alert-info">
+                        <div class="alert alert-info text-center" id="noDataMessage" style="display: none;">
                             <i class="fas fa-info-circle me-2"></i>
-                            <strong>Em desenvolvimento:</strong> A página de relatórios está sendo implementada. 
-                            Em breve você poderá visualizar relatórios detalhados sobre o estoque.
+                            Nenhum produto encontrado para gerar o gráfico.
                         </div>
-                        
-                        <div class="row">
-                            <div class="col-md-6 col-lg-4 mb-3">
-                                <div class="card border-primary">
-                                    <div class="card-body text-center">
-                                        <i class="fas fa-boxes fa-3x text-primary mb-3"></i>
-                                        <h5 class="card-title">Relatório de Produtos</h5>
-                                        <p class="card-text">Visualize todos os produtos em estoque</p>
-                                        <button class="btn btn-primary" disabled>Em breve</button>
-                                    </div>
-                                </div>
+    
+                        <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                            <div class="chart-container" style="height: 400px; max-width: 600px;">
+                                <canvas id="estoqueChart"></canvas>
                             </div>
-                            
-                            <div class="col-md-6 col-lg-4 mb-3">
-                                <div class="card border-warning">
-                                    <div class="card-body text-center">
-                                        <i class="fas fa-exclamation-triangle fa-3x text-warning mb-3"></i>
-                                        <h5 class="card-title">Estoque Baixo</h5>
-                                        <p class="card-text">Produtos com estoque crítico</p>
-                                        <button class="btn btn-warning" disabled>Em breve</button>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="col-md-6 col-lg-4 mb-3">
-                                <div class="card border-success">
-                                    <div class="card-body text-center">
-                                        <i class="fas fa-chart-line fa-3x text-success mb-3"></i>
-                                        <h5 class="card-title">Valor em Estoque</h5>
-                                        <p class="card-text">Valor total do inventário</p>
-                                        <button class="btn btn-success" disabled>Em breve</button>
-                                    </div>
-                                </div>
-                            </div>
+                            <div id="custom-legend" class="chart-legend mt-3"></div>
                         </div>
                     </div>
                 </div>
@@ -92,5 +62,8 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <script src="../../assets/js/relatorios/relatorios.js"></script>
 </body>
 </html>
