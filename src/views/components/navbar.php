@@ -5,38 +5,6 @@ require_once __DIR__ . '/../../config/Config.php';
 $usuarioLogado = Session::getUser();
 ?>
 
-<style>
-.navbar {
-    background: #345fd1 !important;
-    padding: 12px 20px !important;
-    border-bottom-left-radius: 10px !important;
-    border-bottom-right-radius: 10px !important;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2) !important;
-}
-
-.navbar .navbar-logo {
-    height: 50px !important;
-    max-height: 50px !important;
-    max-width: 150px !important;
-    width: auto !important;
-    display: block;
-    border-radius: 6px;
-}
-
-.navbar .nav-link {
-    color: #fff !important;
-    font-weight: 500 !important;
-}
-
-.navbar .nav-link:hover {
-    color: #ffe082 !important;
-}
-
-.offcanvas {
-    color: #fff;
-}
-</style>
-
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
         <!-- Logo -->
@@ -55,7 +23,7 @@ $usuarioLogado = Session::getUser();
                 <h5 class="offcanvas-title">
                     <img src="<?= asset('img/logo-stok-azul-laranja.png') ?>" alt="Logo Stok" class="navbar-logo"/>
                 </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
             </div>
             
             <div class="offcanvas-body">
@@ -65,15 +33,17 @@ $usuarioLogado = Session::getUser();
                     <li class="nav-item"><a class="nav-link" href="<?= url('usuarios/index.php') ?>">Usuários</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= url('relatorios/index.php') ?>">Relatórios</a></li>
                     
-                    <!-- Dropdown usuário -->
+                    <!-- Dropdown usuário com botão -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                        <button class="btn dropdown-toggle d-flex align-items-center" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-user me-1"></i><?= htmlspecialchars($usuarioLogado['nome']) ?>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="<?= BASE_URL ?>controllers/sair.php">
-                                <i class="fas fa-sign-out-alt me-2"></i>Sair
-                            </a></li>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                            <li>
+                                <a class="dropdown-item" href="<?= BASE_URL ?>controllers/sair.php">
+                                    <i class="fas fa-sign-out-alt me-2"></i>Sair
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 </ul>

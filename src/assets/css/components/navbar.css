@@ -1,38 +1,99 @@
-/* Navbar estilizada */
+/* ==========================================
+   Navbar estilizada
+========================================== */
 .navbar {
-    background: linear-gradient(135deg, #345fd1 0%, #f98f19 100%); /* azul + laranja */
-    padding: 12px 20px;
-    border: none;
+    background-color: #345fd1; /* cor sólida azul */
+    padding: 10px 40px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 /* Logo dentro da navbar */
 .navbar .navbar-logo {
-    height: 50px; /* ou 40px se quiser menor */
-    max-height: 50px;
-    max-width: 150px;
+    height: 100px;
     width: auto;
-    display: block;
     border-radius: 6px;
+    object-fit: contain;
+    display: block;
+    margin-left: 45px;
 }
 
-/* Links da navbar */
-.navbar .nav-link {
+/* ==============================
+   Links da navbar
+============================== */
+.navbar .navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+/* Aumenta o espaçamento entre os links */
+.navbar .navbar-nav .nav-item {
+    margin-right: 30px; /* espaçamento horizontal */
+}
+
+/* Links normais */
+.navbar .navbar-nav .nav-link {
     color: #fff !important;
     font-weight: 500;
-    transition: color 0.3s ease, transform 0.2s ease;
+    position: relative;
+    transition: color 0.3s ease;
+    padding: 8px 0;
 }
 
 /* Hover nos links */
-.navbar .nav-link:hover {
-    color: #ffe9d6 !important; /* tom claro puxando pro laranja */
+.navbar .navbar-nav .nav-link:hover {
+    color: #ffe9d6 !important;
     transform: translateY(-2px);
 }
 
-/* Nome do usuário (parte direita) */
+/* Linha animada nos links */
+.navbar .navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 2px;
+    width: 0;
+    background-color: #ffe9d6;
+    transition: width 0.3s ease;
+}
+.navbar .navbar-nav .nav-link:hover::after {
+    width: 100%;
+}
+
+/* Texto do usuário */
 .navbar .navbar-text {
     color: #fff !important;
     font-weight: 600;
+}
+
+/* Botão dropdown do usuário */
+.navbar .btn.dropdown-toggle {
+    background-color: #f1f5f9; /* cor clara */
+    color: #345fd1; /* texto azul */
+    font-weight: 500;
+    border-radius: 6px;
+    border: none;
+    padding: 6px 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: background-color 0.2s;
+    margin-right: 20px; /* botão afastado da borda */
+}
+
+.navbar .btn.dropdown-toggle:hover {
+    background-color: #e2e8f0;
+}
+
+/* Ajuste do dropdown */
+.navbar .dropdown-menu {
+    min-width: 150px;
+    border-radius: 6px;
+    padding: 0.5rem 0;
 }
