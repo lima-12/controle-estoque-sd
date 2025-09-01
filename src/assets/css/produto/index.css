@@ -230,34 +230,66 @@ body {
     margin-bottom: 20px;
 }
 
-/* Botão flutuante para adicionar produto */
+/* ---------------------------------------------------- */
+/* NOVO ESTILO DO BOTÃO DE ADICIONAR PRODUTO ANIMADO */
+/* ---------------------------------------------------- */
+/* ... Outros estilos ... */
+
+/* ---------------------------------------------------- */
+/* NOVO ESTILO DO BOTÃO DE ADICIONAR PRODUTO ANIMADO */
+/* ---------------------------------------------------- */
 .btn-add-product {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    background-color: #0d6efd;
-    color: #fff;
-    font-weight: 600;
-    padding: 12px 20px;
-    border-radius: 50px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
+    width: 65px; /* Largura inicial do círculo */
+    height: 65px; /* Altura inicial do círculo */
+    margin-right: 30px;
+    background-color: #0d6efd; /* Cor de fundo azul */
+    color: white;
+    border-radius: 50%; /* Torna-o circular */
+    font-size: 1.2rem; /* Tamanho do ícone de mais */
+    font-weight: 600;
     text-decoration: none;
     box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-    transition: all 0.3s ease;
+    transition: all 0.3s ease-in-out; /* Transição suave para todas as propriedades */
+    overflow: hidden; /* Esconde o texto inicialmente */
     z-index: 1000;
 }
 
 .btn-add-product i {
-    font-size: 1.2rem;
+    margin-right: 0; /* No estado circular, não há margem */
+    transition: margin-right 0.3s ease-in-out; /* Transição para a margem do ícone */
 }
 
-.btn-add-product:hover {
-    background-color: #f98f19;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+.btn-add-product .btn-text {
+    width: 0; /* Oculta o texto inicialmente */
+    opacity: 0; /* Torna o texto invisível */
+    white-space: nowrap; /* Impede que o texto quebre linha */
+    transition: width 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
+
+/* Estilo do botão ao passar o mouse (hover) */
+.btn-add-product:hover {
+    width: 250px; /* Largura expandida */
+    border-radius: 30px; /* Bordas totalmente circulares (metade da altura) */
+    background-color: #0d5ed7; /* Cor mais escura no hover */
+    justify-content: flex-start; /* Alinha o conteúdo à esquerda */
+    padding-left: 20px; /* Espaçamento interno */
+}
+
+.btn-add-product:hover i {
+    margin-right: 10px; /* Espaço entre o ícone e o texto */
+}
+
+.btn-add-product:hover .btn-text {
+    width: auto; /* Permite que o texto ocupe sua largura natural */
+    opacity: 1; /* Torna o texto visível */
+}
+
 
 /* Responsividade */
 @media (max-width: 768px) {
@@ -272,6 +304,11 @@ body {
     
     .produtos-container .form-control[type="search"] {
         max-width: 100%;
+    }
+    
+    /* Ajuste para o botão flutuante em telas menores */
+    .btn-add-product:hover {
+        width: 180px;
     }
 }
 

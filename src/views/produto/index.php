@@ -35,7 +35,6 @@
     <?php include_once(__DIR__ . '/../components/navbar.php'); ?>
 
     <div class="produtos-container px-4">
-        <!-- Breadcrumb alinhado ao grid -->
         <div class="breadcrump mb-3">
             <?php 
                 $breadcrumbs = [
@@ -46,7 +45,6 @@
             ?>
         </div>
 
-        <!-- Seção da barra de pesquisa -->
         <div class="d-flex justify-content-center mb-5">
             <form class="d-flex search-form-container">
                 <input class="form-control me-2" type="search" id="searchInput" placeholder="Pesquisar" aria-label="Pesquisar">
@@ -54,7 +52,6 @@
             </form>
         </div>
 
-        <!-- Grid de produtos -->
         <div class="produtos-grid my-4" id="produtos-grid"></div>
 
         <div class="no-products d-none" id="no-products">
@@ -64,7 +61,8 @@
     </div>
 
     <a href="./create.php" class="btn-add-product">
-        <i class="fas fa-plus"></i> Adicionar Produto
+        <i class="fas fa-plus"></i>
+        <span class="btn-text">Adicionar Produto</span>
     </a>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
