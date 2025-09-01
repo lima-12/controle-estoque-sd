@@ -10,21 +10,22 @@ Session::requireLogin();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entrada de Produtos - Controle de Estoque</title>
+    <title>Stok - Entrada de Produtos</title>
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Estilos personalizados -->
-    <link rel="stylesheet" href="../../assets/css/produto/index.css" />
+    <link rel="stylesheet" href="../../assets/css/entrada-produto/index.css" />
     <link rel="stylesheet" href="../../assets/css/components/navbar.css">
     <link rel="stylesheet" href="../../assets/css/botao.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body>
     <?php include_once(__DIR__ . '/../components/navbar.php'); ?>
     
-    <div class="container mt-4">
+    <div class="container-entrada-produto px-4">
         <!-- Breadcrumb -->
         <div class="breadcrump mb-4">
             <?php 
@@ -36,8 +37,22 @@ Session::requireLogin();
             ?>
         </div>
 
+        <!-- Search and Actions Bar -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="mb-0">Registrar Entrada de Produtos</h2>
+            <!-- <div class="d-flex">
+                <div class="position-relative me-2" style="width: 250px;">
+                    <input type="text" class="form-control" id="searchInput" placeholder="Buscar entradas..." style="padding-left: 35px;">
+                    <i class="fas fa-search position-absolute" style="left: 12px; top: 50%; transform: translateY(-50%); color: #6c757d;"></i>
+                </div>
+                <button class="btn btn-outline-secondary" onclick="refreshEntries()" title="Atualizar lista">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div> -->
+        </div>
+
         <div class="card">
-            <div class="card-header"> Registrar Entrada de Produtos </div>
+            <!-- <div class="card-header"> Registrar Entrada de Produtos </div> -->
             <div class="card-body">
                 <div class="row">
                     <div class="col-12">
@@ -68,9 +83,9 @@ Session::requireLogin();
                                     </div>
                                 
                                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                        <a href="/src/views/home.php" class="btn btn-outline-secondary me-md-2">
+                                        <!-- <a href="/src/views/home.php" class="btn btn-outline-secondary me-md-2">
                                             <i class="fas fa-arrow-left"></i> Voltar
-                                        </a>
+                                        </a> -->
                                         <button type="submit" class="btn btn-primary">
                                             <i class="fas fa-save"></i> Registrar Entrada
                                         </button>

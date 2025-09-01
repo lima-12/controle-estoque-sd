@@ -1,0 +1,54 @@
+/* Container principal */
+.container-entrada-produto {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-bottom: 80px; /* Espaço para o botão flutuante */
+}
+
+/* Estilo do cabeçalho */
+.d-flex.justify-content-between.align-items-center.mb-4 {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    margin-bottom: 30px;
+}
+
+/* Estilo do card */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #eee;
+    font-weight: 600;
+    padding: 15px 20px;
+}
+
+.card-body {
+    padding: 25px;
+}
+
+/* Estilo do formulário */
+.cartao-formulario {
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container-entrada-produto {
+        padding: 15px;
+    }
+    
+    .card-body {
+        padding: 20px 15px;
+    }
+}
+
