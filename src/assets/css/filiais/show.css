@@ -1,0 +1,139 @@
+/* ==========================================
+   CSS PARA TELA DE DETALHES DA FILIAL
+========================================== */
+
+.filial-show-container {
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.filial-details-content {
+    padding: 20px 0;
+}
+
+.filial-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #e9ecef;
+    margin-bottom: 30px;
+}
+
+.filial-icon-large {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #345fd1, #4a90e2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(52, 95, 209, 0.3);
+}
+
+.filial-icon-large i {
+    font-size: 32px;
+    color: white;
+}
+
+.filial-title h3 {
+    color: #2c3e50;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.filial-title p {
+    color: #6c757d;
+    font-size: 16px;
+}
+
+.filial-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.info-item {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    border-left: 4px solid #345fd1;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.info-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.info-label {
+    font-size: 14px;
+    color: #6c757d;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-label i {
+    color: #345fd1;
+    margin-right: 8px;
+}
+
+.info-value {
+    font-size: 16px;
+    color: #2c3e50;
+    font-weight: 500;
+    word-break: break-word;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .filial-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .filial-icon-large {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .filial-icon-large i {
+        font-size: 24px;
+    }
+    
+    .filial-info-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .info-item {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .filial-show-container {
+        padding-top: 15px;
+        padding-bottom: 30px;
+    }
+    
+    .filial-details-content {
+        padding: 15px 0;
+    }
+    
+    .filial-header {
+        margin-bottom: 20px;
+    }
+    
+    .filial-title h3 {
+        font-size: 20px;
+    }
+    
+    .filial-title p {
+        font-size: 14px;
+    }
+}
+

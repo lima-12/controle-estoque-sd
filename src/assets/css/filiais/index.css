@@ -1,0 +1,287 @@
+/* ============================================
+   ESTILOS PARA TELA DE FILIAIS
+   Seguindo padrão visual e efeito de botão de produtos
+   ============================================ */
+
+body {
+    background: linear-gradient(135deg, #8bbcf0 0%, #ffffff 35%, #ffb877 100%);
+    min-height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container principal */
+.filiais-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Grid de filiais */
+.filiais-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Card da filial */
+.filial-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.filial-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Header do card */
+.filial-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.filial-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    margin-right: 15px;
+}
+
+.filial-info h5 {
+    margin: 0;
+    color: #333;
+    font-weight: 600;
+}
+
+.filial-location {
+    color: #666;
+    font-size: 14px;
+    margin: 5px 0 0 0;
+}
+
+/* Detalhes da filial */
+.filial-details {
+    margin-top: 15px;
+}
+
+.filial-detail {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.filial-detail-label {
+    color: #666;
+    font-weight: 500;
+}
+
+.filial-detail-value {
+    color: #333;
+    text-align: right;
+}
+
+/* Ações do card */
+.filial-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.filial-action-btn {
+    flex: 1;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+}
+
+.filial-action-btn.view {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.filial-action-btn.view:hover {
+    background-color: #138496;
+    color: white;
+}
+
+.filial-action-btn.edit {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.filial-action-btn.edit:hover {
+    background-color: #e0a800;
+    color: #212529;
+}
+
+.filial-action-btn.delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.filial-action-btn.delete:hover {
+    background-color: #c82333;
+    color: white;
+}
+
+/* Mensagem quando não há filiais */
+.no-filiais {
+    text-align: center;
+    padding: 60px 20px;
+    color: #666;
+}
+
+.no-filiais i {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #ccc;
+}
+
+/* Breadcrump */
+.breadcrump {
+    margin-bottom: 20px;
+}
+
+/* Search Bar */
+.d-flex.justify-content-between.align-items-center.mb-4 {
+    background: #f8f9fa;
+    padding: 15px 20px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+}
+
+#searchInput {
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+#searchInput:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.btn-outline-secondary {
+    border-radius: 6px;
+    transition: all 0.15s ease-in-out;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: white;
+}
+
+/* Loading spinner */
+.fa-spinner {
+    color: #007bff;
+    font-size: 24px;
+}
+
+/* ----------------------------------------------------
+   BOTÃO DE ADICIONAR FILIAL COM MESMO EFEITO DE PRODUTOS
+   ---------------------------------------------------- */
+.btn-add-filial {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 65px; /* Largura inicial do círculo */
+    height: 65px; /* Altura inicial do círculo */
+    background-color: #007bff;
+    color: white;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(0,123,255,0.2);
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.btn-add-filial i {
+    margin-right: 0;
+    transition: margin-right 0.3s ease-in-out;
+}
+
+.btn-add-filial .btn-text {
+    width: 0;
+    opacity: 0;
+    white-space: nowrap;
+    transition: width 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.btn-add-filial:hover {
+    width: 250px;
+    border-radius: 30px;
+    background-color: #0056b3;
+    justify-content: flex-start;
+    padding-left: 20px;
+}
+
+.btn-add-filial:hover i {
+    margin-right: 10px;
+}
+
+.btn-add-filial:hover .btn-text {
+    width: auto;
+    opacity: 1;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .filiais-container {
+        padding: 10px;
+    }
+    
+    .d-flex.justify-content-between.align-items-center.mb-4 {
+        flex-direction: column;
+        align-items: stretch !important;
+        gap: 15px;
+    }
+    
+    #searchInput {
+        width: 100% !important;
+    }
+    
+    .filiais-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .filial-actions {
+        flex-direction: column;
+    }
+    
+    .btn-add-filial:hover {
+        width: 180px;
+    }
+}
