@@ -11,6 +11,7 @@
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* Logo dentro da navbar */
