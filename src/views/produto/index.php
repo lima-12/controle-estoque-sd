@@ -36,7 +36,7 @@
 
     <div class="produtos-container px-4">
         <!-- Breadcrumb alinhado ao grid -->
-        <div class="breadcrump">
+        <div class="breadcrump mb-3">
             <?php 
                 $breadcrumbs = [
                     ['label' => 'Home', 'href' => '../home.php'],
@@ -46,8 +46,8 @@
             ?>
         </div>
 
-        <!-- Seção do título e da barra de pesquisa -->
-        <div class="d-flex justify-content-center mb-4">
+        <!-- Seção da barra de pesquisa -->
+        <div class="d-flex justify-content-center mb-5">
             <form class="d-flex search-form-container">
                 <input class="form-control me-2" type="search" id="searchInput" placeholder="Pesquisar" aria-label="Pesquisar">
                 <button class="btn btn-stok-primary" type="submit">Pesquisar</button>
@@ -55,7 +55,7 @@
         </div>
 
         <!-- Grid de produtos -->
-        <div class="produtos-grid" id="produtos-grid"></div>
+        <div class="produtos-grid my-4" id="produtos-grid"></div>
 
         <div class="no-products d-none" id="no-products">
             <i class="fas fa-box-open"></i>

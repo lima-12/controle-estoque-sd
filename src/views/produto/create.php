@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </div>
 
         <!-- Container principal do formulário -->
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mb-5">
             <div class="col-12 col-lg-8">
                 <div class="cartao-formulario">
                     <!-- Cabeçalho com título e ícone -->
