@@ -72,7 +72,9 @@
 
     <a href="./create.php" class="btn-add-user">
         <i class="fas fa-plus"></i>
+        <span class="btn-text">Adicionar Usuário</span>
     </a>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
